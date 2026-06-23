@@ -3,6 +3,7 @@ import Taro from '@tarojs/taro'
 import { View, Text, ScrollView } from '@tarojs/components'
 import { orderApi, type Order } from '../../api'
 import { useUserStore } from '../../store/user'
+import { useTheme } from '../../hooks/useTheme'
 import './index.scss'
 
 const STATUS_MAP: Record<string, { label: string; color: string }> = {
@@ -23,6 +24,7 @@ const STATUS_TABS = [
 ]
 
 export default function OrderListPage() {
+  const { themeStyle } = useTheme()
   const [orders, setOrders] = useState<Order[]>([])
   const [activeTab, setActiveTab] = useState('')
   const [loading, setLoading] = useState(false)
@@ -53,7 +55,7 @@ export default function OrderListPage() {
   }
 
   return (
-    <View className='order-page'>
+    <View className='order-page' style={themeStyle}>
       {/* 状态 Tab */}
       <ScrollView scrollX className='status-tabs'>
         {STATUS_TABS.map(tab => (

@@ -1,1 +1,339 @@
-"use strict";(wx["webpackJsonp"]=wx["webpackJsonp"]||[]).push([[519],{7943:function(e,n,t){var s=t(8774),a=t(2688),c=t(5861),i=t(9439),r=t(7294),l=t(2954),o=t.n(l),u=t(1515),d=t(3715),m=t(2718),h=t(1142),p=t(5893);function x(){var e=(0,d.x)(),n=e.items,t=e.addItem,s=e.removeItem,l=e.clearCart,x=e.totalCount,f=e.totalAmount,g=(0,m.L)(),N=g.isLoggedIn,v=g.login,j=(0,r.useState)(""),k=(0,i.Z)(j,2),w=k[0],b=k[1],y=(0,r.useState)(""),G=(0,i.Z)(y,2),S=G[0],T=G[1],Z=(0,r.useState)(!1),C=(0,i.Z)(Z,2),L=C[0],I=C[1],q=function(){var e=(0,c.Z)((0,a.Z)().m(function e(){var t,s,i,r;return(0,a.Z)().w(function(e){while(1)switch(e.p=e.n){case 0:if(N){e.n=1;break}return o().showModal({title:"\u63d0\u793a",content:"\u8bf7\u5148\u767b\u5f55",success:function(){var e=(0,c.Z)((0,a.Z)().m(function e(n){return(0,a.Z)().w(function(e){while(1)switch(e.n){case 0:if(!n.confirm){e.n=1;break}return e.n=1,v();case 1:return e.a(2)}},e)}));function n(n){return e.apply(this,arguments)}return n}()}),e.a(2);case 1:if(0!==n.length){e.n=2;break}return o().showToast({title:"\u8d2d\u7269\u8f66\u4e3a\u7a7a",icon:"none"}),e.a(2);case 2:return e.p=2,I(!0),o().showLoading({title:"\u63d0\u4ea4\u8ba2\u5355\u4e2d..."}),e.n=3,h.Eh.create({items:n.map(function(e){return{dishId:e.dish.id,quantity:e.quantity,remark:e.remark}}),remark:w,tableNo:S});case 3:return t=e.v,o().hideLoading(),o().showLoading({title:"\u53d1\u8d77\u652f\u4ed8..."}),e.n=4,h.Yw.prepay(t.id);case 4:return s=e.v,e.n=5,o().requestPayment({timeStamp:s.timeStamp,nonceStr:s.nonceStr,package:s.package,signType:s.signType,paySign:s.paySign});case 5:l(),o().hideLoading(),o().showToast({title:"\u652f\u4ed8\u6210\u529f\uff01",icon:"success"}),setTimeout(function(){o().navigateTo({url:"/pages/order/detail?id=".concat(t.id)})},1500),e.n=7;break;case 6:e.p=6,r=e.v,o().hideLoading(),i=(null===r||void 0===r?void 0:r.errMsg)||"",i.includes("cancel")?o().showToast({title:"\u5df2\u53d6\u6d88\u652f\u4ed8",icon:"none"}):o().showToast({title:"\u652f\u4ed8\u5931\u8d25\uff0c\u8bf7\u91cd\u8bd5",icon:"none"}),console.error(r);case 7:return e.p=7,I(!1),e.f(7);case 8:return e.a(2)}},e,null,[[2,6,7,8]])}));return function(){return e.apply(this,arguments)}}();return 0===n.length?(0,p.jsxs)(u.G7,{className:"empty-cart",children:[(0,p.jsx)(u.xv,{className:"empty-icon",children:"\ud83d\uded2"}),(0,p.jsx)(u.xv,{className:"empty-text",children:"\u8d2d\u7269\u8f66\u7a7a\u7a7a\u5982\u4e5f"}),(0,p.jsx)(u.G7,{className:"go-shop",onClick:function(){return o().switchTab({url:"/pages/category/index"})},children:"\u53bb\u70b9\u83dc"})]}):(0,p.jsxs)(u.G7,{className:"cart-page",children:[(0,p.jsxs)(u.pf,{scrollY:!0,className:"cart-list",children:[n.map(function(e){return(0,p.jsxs)(u.G7,{className:"cart-item",children:[(0,p.jsx)(u.Ee,{src:e.dish.image||"https://via.placeholder.com/80?text=\u83dc",mode:"aspectFill",className:"item-img"}),(0,p.jsxs)(u.G7,{className:"item-info",children:[(0,p.jsx)(u.xv,{className:"item-name",children:e.dish.name}),(0,p.jsxs)(u.xv,{className:"item-price",children:["\xa5",Number(e.dish.price).toFixed(2)]})]}),(0,p.jsxs)(u.G7,{className:"stepper",children:[(0,p.jsx)(u.G7,{className:"btn minus",onClick:function(){return s(e.dish.id)},children:"-"}),(0,p.jsx)(u.xv,{className:"num",children:e.quantity}),(0,p.jsx)(u.G7,{className:"btn plus",onClick:function(){return t(e.dish)},children:"+"})]})]},e.dish.id)}),(0,p.jsxs)(u.G7,{className:"remark-section",children:[(0,p.jsx)(u.xv,{className:"section-title",children:"\u5907\u6ce8"}),(0,p.jsx)(u.gx,{className:"remark-input",placeholder:"\u5982\u6709\u7279\u6b8a\u8981\u6c42\u8bf7\u5907\u6ce8...",value:w,onInput:function(e){return b(e.detail.value)},maxlength:200})]}),(0,p.jsxs)(u.G7,{className:"table-section",children:[(0,p.jsx)(u.xv,{className:"section-title",children:"\u684c\u53f7"}),(0,p.jsx)(u.G7,{className:"table-input-row",children:["1\u53f7\u684c","2\u53f7\u684c","3\u53f7\u684c","4\u53f7\u684c","\u6253\u5305\u5e26\u8d70"].map(function(e){return(0,p.jsx)(u.G7,{className:"table-chip ".concat(S===e?"active":""),onClick:function(){return T(e)},children:e},e)})})]})]}),(0,p.jsxs)(u.G7,{className:"checkout-bar",children:[(0,p.jsxs)(u.G7,{className:"total-area",children:[(0,p.jsx)(u.xv,{className:"total-label",children:"\u5408\u8ba1"}),(0,p.jsxs)(u.xv,{className:"total-price",children:["\xa5",f().toFixed(2)]})]}),(0,p.jsx)(u.G7,{className:"checkout-btn ".concat(L?"disabled":""),onClick:L?void 0:q,children:L?"\u5904\u7406\u4e2d...":"\u7ed3\u7b97 (".concat(x(),"\u4ef6)")})]})]})}var f={};Page((0,s.R4)(x,"pages/cart/index",{root:{cn:[]}},f||{}))}},function(e){var n=function(n){return e(e.s=n)};e.O(0,[107,216,592],function(){return n(7943)});e.O()}]);
+"use strict";
+(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["pages/cart/index"],{
+
+/***/ "./node_modules/@tarojs/taro-loader/lib/entry-cache.js?name=pages/cart/index!./src/pages/cart/index.tsx":
+/*!**************************************************************************************************************!*\
+  !*** ./node_modules/@tarojs/taro-loader/lib/entry-cache.js?name=pages/cart/index!./src/pages/cart/index.tsx ***!
+  \**************************************************************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ CartPage; }
+/* harmony export */ });
+/* harmony import */ var C_Users_hgw10_WorkBuddy_2026_06_23_15_03_39_food_order_system_miniapp_node_modules_babel_runtime_helpers_esm_regenerator_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/regenerator.js */ "./node_modules/@babel/runtime/helpers/esm/regenerator.js");
+/* harmony import */ var C_Users_hgw10_WorkBuddy_2026_06_23_15_03_39_food_order_system_miniapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
+/* harmony import */ var C_Users_hgw10_WorkBuddy_2026_06_23_15_03_39_food_order_system_miniapp_node_modules_babel_runtime_helpers_esm_slicedToArray_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/slicedToArray.js */ "./node_modules/@babel/runtime/helpers/esm/slicedToArray.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _tarojs_taro__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @tarojs/taro */ "./node_modules/@tarojs/taro/index.js");
+/* harmony import */ var _tarojs_taro__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_tarojs_taro__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _tarojs_components__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @tarojs/components */ "./node_modules/@tarojs/plugin-platform-weapp/dist/components-react.js");
+/* harmony import */ var _store_cart__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../store/cart */ "./src/store/cart.ts");
+/* harmony import */ var _store_user__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../store/user */ "./src/store/user.ts");
+/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../api */ "./src/api/index.ts");
+/* harmony import */ var _hooks_useTheme__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../hooks/useTheme */ "./src/hooks/useTheme.ts");
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-dev-runtime */ "./node_modules/react/jsx-dev-runtime.js");
+
+
+
+
+
+
+
+
+
+
+
+
+function CartPage() {
+  var _useTheme = (0,_hooks_useTheme__WEBPACK_IMPORTED_MODULE_5__.useTheme)(),
+    themeStyle = _useTheme.themeStyle;
+  var _useCartStore = (0,_store_cart__WEBPACK_IMPORTED_MODULE_2__.useCartStore)(),
+    items = _useCartStore.items,
+    addItem = _useCartStore.addItem,
+    removeItem = _useCartStore.removeItem,
+    clearCart = _useCartStore.clearCart,
+    totalCount = _useCartStore.totalCount,
+    totalAmount = _useCartStore.totalAmount;
+  var _useUserStore = (0,_store_user__WEBPACK_IMPORTED_MODULE_3__.useUserStore)(),
+    isLoggedIn = _useUserStore.isLoggedIn,
+    login = _useUserStore.login;
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState2 = (0,C_Users_hgw10_WorkBuddy_2026_06_23_15_03_39_food_order_system_miniapp_node_modules_babel_runtime_helpers_esm_slicedToArray_js__WEBPACK_IMPORTED_MODULE_7__["default"])(_useState, 2),
+    remark = _useState2[0],
+    setRemark = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState4 = (0,C_Users_hgw10_WorkBuddy_2026_06_23_15_03_39_food_order_system_miniapp_node_modules_babel_runtime_helpers_esm_slicedToArray_js__WEBPACK_IMPORTED_MODULE_7__["default"])(_useState3, 2),
+    tableNo = _useState4[0],
+    setTableNo = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState6 = (0,C_Users_hgw10_WorkBuddy_2026_06_23_15_03_39_food_order_system_miniapp_node_modules_babel_runtime_helpers_esm_slicedToArray_js__WEBPACK_IMPORTED_MODULE_7__["default"])(_useState5, 2),
+    submitting = _useState6[0],
+    setSubmitting = _useState6[1];
+  var handleSubmitOrder = /*#__PURE__*/function () {
+    var _ref = (0,C_Users_hgw10_WorkBuddy_2026_06_23_15_03_39_food_order_system_miniapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_8__["default"])(/*#__PURE__*/(0,C_Users_hgw10_WorkBuddy_2026_06_23_15_03_39_food_order_system_miniapp_node_modules_babel_runtime_helpers_esm_regenerator_js__WEBPACK_IMPORTED_MODULE_9__["default"])().m(function _callee2() {
+      var order, payParams, errMsg, _t;
+      return (0,C_Users_hgw10_WorkBuddy_2026_06_23_15_03_39_food_order_system_miniapp_node_modules_babel_runtime_helpers_esm_regenerator_js__WEBPACK_IMPORTED_MODULE_9__["default"])().w(function (_context2) {
+        while (1) switch (_context2.p = _context2.n) {
+          case 0:
+            if (isLoggedIn) {
+              _context2.n = 1;
+              break;
+            }
+            _tarojs_taro__WEBPACK_IMPORTED_MODULE_1___default().showModal({
+              title: '提示',
+              content: '请先登录',
+              success: function () {
+                var _success = (0,C_Users_hgw10_WorkBuddy_2026_06_23_15_03_39_food_order_system_miniapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_8__["default"])(/*#__PURE__*/(0,C_Users_hgw10_WorkBuddy_2026_06_23_15_03_39_food_order_system_miniapp_node_modules_babel_runtime_helpers_esm_regenerator_js__WEBPACK_IMPORTED_MODULE_9__["default"])().m(function _callee(res) {
+                  return (0,C_Users_hgw10_WorkBuddy_2026_06_23_15_03_39_food_order_system_miniapp_node_modules_babel_runtime_helpers_esm_regenerator_js__WEBPACK_IMPORTED_MODULE_9__["default"])().w(function (_context) {
+                    while (1) switch (_context.n) {
+                      case 0:
+                        if (!res.confirm) {
+                          _context.n = 1;
+                          break;
+                        }
+                        _context.n = 1;
+                        return login();
+                      case 1:
+                        return _context.a(2);
+                    }
+                  }, _callee);
+                }));
+                function success(_x) {
+                  return _success.apply(this, arguments);
+                }
+                return success;
+              }()
+            });
+            return _context2.a(2);
+          case 1:
+            if (!(items.length === 0)) {
+              _context2.n = 2;
+              break;
+            }
+            _tarojs_taro__WEBPACK_IMPORTED_MODULE_1___default().showToast({
+              title: '购物车为空',
+              icon: 'none'
+            });
+            return _context2.a(2);
+          case 2:
+            _context2.p = 2;
+            setSubmitting(true);
+            _tarojs_taro__WEBPACK_IMPORTED_MODULE_1___default().showLoading({
+              title: '提交订单中...'
+            });
+
+            // 创建订单
+            _context2.n = 3;
+            return _api__WEBPACK_IMPORTED_MODULE_4__.orderApi.create({
+              items: items.map(function (i) {
+                return {
+                  dishId: i.dish.id,
+                  quantity: i.quantity,
+                  remark: i.remark
+                };
+              }),
+              remark: remark,
+              tableNo: tableNo
+            });
+          case 3:
+            order = _context2.v;
+            _tarojs_taro__WEBPACK_IMPORTED_MODULE_1___default().hideLoading();
+            _tarojs_taro__WEBPACK_IMPORTED_MODULE_1___default().showLoading({
+              title: '发起支付...'
+            });
+
+            // 获取支付参数
+            _context2.n = 4;
+            return _api__WEBPACK_IMPORTED_MODULE_4__.paymentApi.prepay(order.id);
+          case 4:
+            payParams = _context2.v;
+            _context2.n = 5;
+            return _tarojs_taro__WEBPACK_IMPORTED_MODULE_1___default().requestPayment({
+              timeStamp: payParams.timeStamp,
+              nonceStr: payParams.nonceStr,
+              package: payParams.package,
+              signType: payParams.signType,
+              paySign: payParams.paySign
+            });
+          case 5:
+            // 支付成功
+            clearCart();
+            _tarojs_taro__WEBPACK_IMPORTED_MODULE_1___default().hideLoading();
+            _tarojs_taro__WEBPACK_IMPORTED_MODULE_1___default().showToast({
+              title: '支付成功！',
+              icon: 'success'
+            });
+            setTimeout(function () {
+              _tarojs_taro__WEBPACK_IMPORTED_MODULE_1___default().navigateTo({
+                url: "/pages/order/detail?id=".concat(order.id)
+              });
+            }, 1500);
+            _context2.n = 7;
+            break;
+          case 6:
+            _context2.p = 6;
+            _t = _context2.v;
+            _tarojs_taro__WEBPACK_IMPORTED_MODULE_1___default().hideLoading();
+            errMsg = (_t === null || _t === void 0 ? void 0 : _t.errMsg) || '';
+            if (errMsg.includes('cancel')) {
+              _tarojs_taro__WEBPACK_IMPORTED_MODULE_1___default().showToast({
+                title: '已取消支付',
+                icon: 'none'
+              });
+            } else {
+              _tarojs_taro__WEBPACK_IMPORTED_MODULE_1___default().showToast({
+                title: '支付失败，请重试',
+                icon: 'none'
+              });
+            }
+            console.error(_t);
+          case 7:
+            _context2.p = 7;
+            setSubmitting(false);
+            return _context2.f(7);
+          case 8:
+            return _context2.a(2);
+        }
+      }, _callee2, null, [[2, 6, 7, 8]]);
+    }));
+    return function handleSubmitOrder() {
+      return _ref.apply(this, arguments);
+    };
+  }();
+  if (items.length === 0) {
+    return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_tarojs_components__WEBPACK_IMPORTED_MODULE_10__.View, {
+      className: "empty-cart",
+      style: themeStyle,
+      children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_tarojs_components__WEBPACK_IMPORTED_MODULE_10__.Text, {
+        className: "empty-icon",
+        children: "\uD83D\uDED2"
+      }, void 0, false), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_tarojs_components__WEBPACK_IMPORTED_MODULE_10__.Text, {
+        className: "empty-text",
+        children: "\u8D2D\u7269\u8F66\u7A7A\u7A7A\u5982\u4E5F"
+      }, void 0, false), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_tarojs_components__WEBPACK_IMPORTED_MODULE_10__.View, {
+        className: "go-shop",
+        onClick: function onClick() {
+          return _tarojs_taro__WEBPACK_IMPORTED_MODULE_1___default().switchTab({
+            url: '/pages/category/index'
+          });
+        },
+        children: "\u53BB\u70B9\u83DC"
+      }, void 0, false)]
+    }, void 0, true);
+  }
+  return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_tarojs_components__WEBPACK_IMPORTED_MODULE_10__.View, {
+    className: "cart-page",
+    style: themeStyle,
+    children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_tarojs_components__WEBPACK_IMPORTED_MODULE_10__.ScrollView, {
+      scrollY: true,
+      className: "cart-list",
+      children: [items.map(function (item) {
+        return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_tarojs_components__WEBPACK_IMPORTED_MODULE_10__.View, {
+          className: "cart-item",
+          children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_tarojs_components__WEBPACK_IMPORTED_MODULE_10__.Image, {
+            src: item.dish.image || 'https://via.placeholder.com/80?text=菜',
+            mode: "aspectFill",
+            className: "item-img"
+          }, void 0, false), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_tarojs_components__WEBPACK_IMPORTED_MODULE_10__.View, {
+            className: "item-info",
+            children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_tarojs_components__WEBPACK_IMPORTED_MODULE_10__.Text, {
+              className: "item-name",
+              children: item.dish.name
+            }, void 0, false), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_tarojs_components__WEBPACK_IMPORTED_MODULE_10__.Text, {
+              className: "item-price",
+              children: ["\xA5", Number(item.dish.price).toFixed(2)]
+            }, void 0, true)]
+          }, void 0, true), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_tarojs_components__WEBPACK_IMPORTED_MODULE_10__.View, {
+            className: "stepper",
+            children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_tarojs_components__WEBPACK_IMPORTED_MODULE_10__.View, {
+              className: "btn minus",
+              onClick: function onClick() {
+                return removeItem(item.dish.id);
+              },
+              children: "-"
+            }, void 0, false), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_tarojs_components__WEBPACK_IMPORTED_MODULE_10__.Text, {
+              className: "num",
+              children: item.quantity
+            }, void 0, false), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_tarojs_components__WEBPACK_IMPORTED_MODULE_10__.View, {
+              className: "btn plus",
+              onClick: function onClick() {
+                return addItem(item.dish);
+              },
+              children: "+"
+            }, void 0, false)]
+          }, void 0, true)]
+        }, item.dish.id, true);
+      }), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_tarojs_components__WEBPACK_IMPORTED_MODULE_10__.View, {
+        className: "remark-section",
+        children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_tarojs_components__WEBPACK_IMPORTED_MODULE_10__.Text, {
+          className: "section-title",
+          children: "\u5907\u6CE8"
+        }, void 0, false), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_tarojs_components__WEBPACK_IMPORTED_MODULE_10__.Textarea, {
+          className: "remark-input",
+          placeholder: "\u5982\u6709\u7279\u6B8A\u8981\u6C42\u8BF7\u5907\u6CE8...",
+          value: remark,
+          onInput: function onInput(e) {
+            return setRemark(e.detail.value);
+          },
+          maxlength: 200
+        }, void 0, false)]
+      }, void 0, true), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_tarojs_components__WEBPACK_IMPORTED_MODULE_10__.View, {
+        className: "table-section",
+        children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_tarojs_components__WEBPACK_IMPORTED_MODULE_10__.Text, {
+          className: "section-title",
+          children: "\u684C\u53F7"
+        }, void 0, false), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_tarojs_components__WEBPACK_IMPORTED_MODULE_10__.View, {
+          className: "table-input-row",
+          children: ['1号桌', '2号桌', '3号桌', '4号桌', '打包带走'].map(function (t) {
+            return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_tarojs_components__WEBPACK_IMPORTED_MODULE_10__.View, {
+              className: "table-chip ".concat(tableNo === t ? 'active' : ''),
+              onClick: function onClick() {
+                return setTableNo(t);
+              },
+              children: t
+            }, t, false);
+          })
+        }, void 0, false)]
+      }, void 0, true)]
+    }, void 0, true), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_tarojs_components__WEBPACK_IMPORTED_MODULE_10__.View, {
+      className: "checkout-bar",
+      children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_tarojs_components__WEBPACK_IMPORTED_MODULE_10__.View, {
+        className: "total-area",
+        children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_tarojs_components__WEBPACK_IMPORTED_MODULE_10__.Text, {
+          className: "total-label",
+          children: "\u5408\u8BA1"
+        }, void 0, false), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_tarojs_components__WEBPACK_IMPORTED_MODULE_10__.Text, {
+          className: "total-price",
+          children: ["\xA5", totalAmount().toFixed(2)]
+        }, void 0, true)]
+      }, void 0, true), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_tarojs_components__WEBPACK_IMPORTED_MODULE_10__.View, {
+        className: "checkout-btn ".concat(submitting ? 'disabled' : ''),
+        onClick: submitting ? undefined : handleSubmitOrder,
+        children: submitting ? '处理中...' : "\u7ED3\u7B97 (".concat(totalCount(), "\u4EF6)")
+      }, void 0, false)]
+    }, void 0, true)]
+  }, void 0, true);
+}
+
+/***/ }),
+
+/***/ "./src/pages/cart/index.tsx":
+/*!**********************************!*\
+  !*** ./src/pages/cart/index.tsx ***!
+  \**********************************/
+/***/ (function(__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) {
+
+/* harmony import */ var _tarojs_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @tarojs/runtime */ "./node_modules/@tarojs/runtime/dist/dsl/common.js");
+/* harmony import */ var _node_modules_tarojs_taro_loader_lib_entry_cache_js_name_pages_cart_index_index_tsx__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !!../../../node_modules/@tarojs/taro-loader/lib/entry-cache.js?name=pages/cart/index!./index.tsx */ "./node_modules/@tarojs/taro-loader/lib/entry-cache.js?name=pages/cart/index!./src/pages/cart/index.tsx");
+
+
+var config = {};
+
+
+var inst = Page((0,_tarojs_runtime__WEBPACK_IMPORTED_MODULE_1__.createPageConfig)(_node_modules_tarojs_taro_loader_lib_entry_cache_js_name_pages_cart_index_index_tsx__WEBPACK_IMPORTED_MODULE_0__["default"], 'pages/cart/index', {root:{cn:[]}}, config || {}))
+
+
+/* unused harmony default export */ var __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_tarojs_taro_loader_lib_entry_cache_js_name_pages_cart_index_index_tsx__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+
+/***/ })
+
+},
+/******/ function(__webpack_require__) { // webpackRuntimeModules
+/******/ var __webpack_exec__ = function(moduleId) { return __webpack_require__(__webpack_require__.s = moduleId); }
+/******/ __webpack_require__.O(0, ["taro","vendors","common"], function() { return __webpack_exec__("./src/pages/cart/index.tsx"); });
+/******/ var __webpack_exports__ = __webpack_require__.O();
+/******/ }
+]);
+//# sourceMappingURL=index.js.map

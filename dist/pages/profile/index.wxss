@@ -1,1 +1,132 @@
-.profile-page{background:#f5f5f5;min-height:100vh}.user-header{-webkit-align-items:center;background:-webkit-linear-gradient(315deg,#ff6b35,#ff9a5c);background:linear-gradient(135deg,#ff6b35,#ff9a5c);display:-webkit-flex;display:-ms-flexbox;display:flex;padding:60rpx 24rpx 40rpx;-ms-flex-align:center;align-items:center;gap:24rpx}.user-header .avatar{border:3rpx solid hsla(0,0%,100%,.5);border-radius:50%;height:100rpx;width:100rpx}.user-header .user-info .nickname{color:#fff;display:block;font-size:34rpx;font-weight:700}.user-header .user-info .phone{color:hsla(0,0%,100%,.8);display:block;font-size:24rpx;margin-top:6rpx}.user-header .user-info .role-badge{background:hsla(0,0%,100%,.3);border-radius:10rpx;color:#fff;display:inline-block;font-size:20rpx;margin-top:8rpx;padding:2rpx 12rpx}.user-header .login-area{-webkit-align-items:center;display:-webkit-flex;display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center;gap:24rpx}.user-header .login-area .login-avatar{font-size:80rpx}.user-header .login-area .login-info .login-hint{color:hsla(0,0%,100%,.9);display:block;font-size:28rpx;margin-bottom:16rpx}.user-header .login-area .login-info .login-btn{background:hsla(0,0%,100%,.3)!important;border:1rpx solid hsla(0,0%,100%,.5)!important;border-radius:24rpx!important;color:#fff!important;font-size:26rpx!important;line-height:1.4!important;padding:10rpx 28rpx!important}.menu-list{background:#fff;border-radius:12rpx;margin:16rpx;overflow:hidden}.menu-list .menu-item{-webkit-align-items:center;display:-webkit-flex;display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center;border-bottom:1rpx solid #f5f5f5;gap:16rpx;padding:24rpx 20rpx}.menu-list .menu-item:last-child{border-bottom:none}.menu-list .menu-item .menu-icon{font-size:36rpx}.menu-list .menu-item .menu-label{color:#333;-webkit-flex:1;-ms-flex:1;flex:1;font-size:28rpx}.menu-list .menu-item .menu-arrow{color:#ccc;font-size:32rpx}.logout-btn{background:#fff;border-radius:12rpx;color:#f56565;font-size:28rpx;margin:16rpx;padding:24rpx;text-align:center}
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[0].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[0].use[2]!./node_modules/resolve-url-loader/index.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[0].use[4]!./src/pages/profile/index.scss ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.profile-page {
+  background: var(--bg-color);
+  min-height: 100vh;
+}
+
+.user-header {
+  background: -webkit-linear-gradient(315deg, var(--primary-color), var(--primary-light));
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+  padding: 60rpx 24rpx 40rpx;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 24rpx;
+}
+
+.user-header .avatar {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  border: 3rpx solid rgba(255, 255, 255, 0.5);
+}
+
+.user-header .user-info .nickname {
+  display: block;
+  font-size: 34rpx;
+  font-weight: bold;
+  color: #fff;
+}
+
+.user-header .user-info .phone {
+  display: block;
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 6rpx;
+}
+
+.user-header .user-info .role-badge {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.3);
+  color: #fff;
+  font-size: 20rpx;
+  padding: 2rpx 12rpx;
+  border-radius: 10rpx;
+  margin-top: 8rpx;
+}
+
+.user-header .login-area {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 24rpx;
+}
+
+.user-header .login-area .login-avatar {
+  font-size: 80rpx;
+}
+
+.user-header .login-area .login-info .login-hint {
+  display: block;
+  font-size: 28rpx;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 16rpx;
+}
+
+.user-header .login-area .login-info .login-btn {
+  background: rgba(255, 255, 255, 0.3) !important;
+  color: #fff !important;
+  border: 1rpx solid rgba(255, 255, 255, 0.5) !important;
+  border-radius: 24rpx !important;
+  font-size: 26rpx !important;
+  padding: 10rpx 28rpx !important;
+  line-height: 1.4 !important;
+}
+
+.menu-list {
+  background: var(--card-color);
+  border-radius: 12rpx;
+  margin: 16rpx;
+  overflow: hidden;
+}
+
+.menu-list .menu-item {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 24rpx 20rpx;
+  border-bottom: 1rpx solid var(--border-color);
+  gap: 16rpx;
+}
+
+.menu-list .menu-item:last-child {
+  border-bottom: none;
+}
+
+.menu-list .menu-item .menu-icon {
+  font-size: 36rpx;
+}
+
+.menu-list .menu-item .menu-label {
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  font-size: 28rpx;
+  color: var(--text-color);
+}
+
+.menu-list .menu-item .menu-arrow {
+  font-size: 32rpx;
+  color: var(--border-color);
+}
+
+.logout-btn {
+  margin: 16rpx;
+  background: var(--card-color);
+  border-radius: 12rpx;
+  padding: 24rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: var(--error-color);
+}

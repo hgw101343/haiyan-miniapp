@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Taro, { useRouter } from '@tarojs/taro'
 import { View, Text, Image, ScrollView } from '@tarojs/components'
 import { orderApi, paymentApi, type Order } from '../../api'
+import { useTheme } from '../../hooks/useTheme'
 import './detail.scss'
 
 const STATUS_STEPS = ['PENDING', 'PAID', 'PREPARING', 'READY', 'COMPLETED']
@@ -10,6 +11,7 @@ const STATUS_LABELS: Record<string, string> = {
 }
 
 export default function OrderDetailPage() {
+  const { themeStyle } = useTheme()
   const { params } = useRouter()
   const [order, setOrder] = useState<Order | null>(null)
   const [paying, setPaying] = useState(false)
@@ -44,12 +46,12 @@ export default function OrderDetailPage() {
     }
   }
 
-  if (!order) return <View className='loading'>加载中...</View>
+  if (!order) return <View className='loading' style={themeStyle}>加载中...</View>
 
   const currentStep = STATUS_STEPS.indexOf(order.status)
 
   return (
-    <ScrollView scrollY className='detail-page'>
+    <ScrollView scrollY className='detail-page' style={themeStyle}>
       {/* 状态进度条 */}
       <View className='status-bar'>
         <Text className='status-title'>{STATUS_LABELS[order.status]}</Text>

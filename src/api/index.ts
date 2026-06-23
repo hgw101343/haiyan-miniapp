@@ -124,6 +124,7 @@ export interface Category {
   name: string
   icon?: string
   sort: number
+  isRecommended: boolean
   _count?: { dishes: number }
 }
 

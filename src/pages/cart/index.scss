@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background: #f5f5f5;
+  background: var(--bg-color);
 
   .cart-list {
     flex: 1;
@@ -24,11 +24,11 @@
 
   .empty-text {
     font-size: 30px;
-    color: #999;
+    color: var(--text-secondary);
   }
 
   .go-shop {
-    background: #ff6b35;
+    background: var(--primary-color);
     color: #fff;
     padding: 16px 48px;
     border-radius: 40px;
@@ -39,7 +39,7 @@
 .cart-item {
   display: flex;
   align-items: center;
-  background: #fff;
+  background: var(--card-color);
   border-radius: 12px;
   margin-top: 16px;
   padding: 16px;
@@ -57,14 +57,14 @@
 
     .item-name {
       font-size: 28px;
-      color: #222;
+      color: var(--text-color);
       font-weight: 500;
       display: block;
     }
 
     .item-price {
       font-size: 26px;
-      color: #ff6b35;
+      color: var(--primary-color);
       margin-top: 8px;
       display: block;
     }
@@ -85,8 +85,8 @@
       font-size: 32px;
       font-weight: bold;
 
-      &.minus { background: #f0f0f0; color: #ff6b35; }
-      &.plus  { background: #ff6b35; color: #fff; }
+      &.minus { background: var(--bg-color); color: var(--primary-color); }
+      &.plus  { background: var(--primary-color); color: #fff; }
     }
 
     .num {
@@ -98,7 +98,7 @@
 }
 
 .remark-section, .table-section {
-  background: #fff;
+  background: var(--card-color);
   border-radius: 12px;
   margin-top: 16px;
   padding: 16px;
@@ -106,7 +106,7 @@
   .section-title {
     font-size: 28px;
     font-weight: 500;
-    color: #333;
+    color: var(--text-color);
     display: block;
     margin-bottom: 12px;
   }
@@ -116,8 +116,8 @@
   width: 100%;
   min-height: 80px;
   font-size: 26px;
-  color: #333;
-  background: #f8f8f8;
+  color: var(--text-color);
+  background: var(--bg-color);
   border-radius: 8px;
   padding: 12px;
 }
@@ -130,25 +130,25 @@
   .table-chip {
     padding: 8px 20px;
     border-radius: 20px;
-    background: #f5f5f5;
+    background: var(--bg-color);
     font-size: 24px;
-    color: #555;
+    color: var(--text-color);
     border: 2px solid transparent;
 
     &.active {
       background: #fff0eb;
-      color: #ff6b35;
-      border-color: #ff6b35;
+      color: var(--primary-color);
+      border-color: var(--primary-color);
     }
   }
 }
 
 .checkout-bar {
-  background: #fff;
+  background: var(--card-color);
   padding: 16px 24px;
   display: flex;
   align-items: center;
-  border-top: 1px solid #eee;
+  border-top: 1px solid var(--border-color);
   padding-bottom: calc(16px + env(safe-area-inset-bottom));
 
   .total-area {
@@ -156,19 +156,19 @@
 
     .total-label {
       font-size: 24px;
-      color: #999;
+      color: var(--text-secondary);
     }
 
     .total-price {
       font-size: 36px;
-      color: #ff6b35;
+      color: var(--primary-color);
       font-weight: bold;
       margin-left: 8px;
     }
   }
 
   .checkout-btn {
-    background: #ff6b35;
+    background: var(--primary-color);
     color: #fff;
     padding: 16px 40px;
     border-radius: 48px;

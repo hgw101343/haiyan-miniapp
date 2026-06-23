@@ -4,9 +4,11 @@ import { View, Text, Image, ScrollView, Textarea } from '@tarojs/components'
 import { useCartStore } from '../../store/cart'
 import { useUserStore } from '../../store/user'
 import { orderApi, paymentApi } from '../../api'
+import { useTheme } from '../../hooks/useTheme'
 import './index.scss'
 
 export default function CartPage() {
+  const { themeStyle } = useTheme()
   const { items, addItem, removeItem, clearCart, totalCount, totalAmount } = useCartStore()
   const { isLoggedIn, login } = useUserStore()
   const [remark, setRemark] = useState('')
@@ -81,7 +83,7 @@ export default function CartPage() {
 
   if (items.length === 0) {
     return (
-      <View className='empty-cart'>
+      <View className='empty-cart' style={themeStyle}>
         <Text className='empty-icon'>🛒</Text>
         <Text className='empty-text'>购物车空空如也</Text>
         <View className='go-shop' onClick={() => Taro.switchTab({ url: '/pages/category/index' })}>
@@ -92,7 +94,7 @@ export default function CartPage() {
   }
 
   return (
-    <View className='cart-page'>
+    <View className='cart-page' style={themeStyle}>
       <ScrollView scrollY className='cart-list'>
         {items.map(item => (
           <View key={item.dish.id} className='cart-item'>

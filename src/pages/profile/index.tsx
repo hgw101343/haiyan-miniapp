@@ -2,9 +2,11 @@ import React, { useEffect } from 'react'
 import Taro from '@tarojs/taro'
 import { View, Text, Image, Button } from '@tarojs/components'
 import { useUserStore } from '../../store/user'
+import { useTheme } from '../../hooks/useTheme'
 import './index.scss'
 
 export default function ProfilePage() {
+  const { themeStyle } = useTheme()
   const { user, isLoggedIn, login, logout, fetchMe } = useUserStore()
 
   useEffect(() => {
@@ -43,7 +45,7 @@ export default function ProfilePage() {
   ]
 
   return (
-    <View className='profile-page'>
+    <View className='profile-page' style={themeStyle}>
       {/* 头部用户信息 */}
       <View className='user-header'>
         {isLoggedIn && user ? (

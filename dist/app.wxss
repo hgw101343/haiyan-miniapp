@@ -1,1 +1,30 @@
-page{background-color:#f5f5f5;font-family:-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif}audio,button,canvas,checkbox,cover-image,cover-view,form,icon,image,input,label,map,movable-area,movable-view,navigator,picker,picker-view,progress,radio,rich-text,scroll-view,slider,swiper,swiper-item,switch,text,video,view,web-view{-webkit-box-sizing:border-box;box-sizing:border-box}
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[0].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[0].use[2]!./node_modules/resolve-url-loader/index.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[0].use[4]!./src/app.scss ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************************/
+@charset "UTF-8";
+/* ===== CSS 变量 — 默认暖橙色主题 ===== */
+page {
+  --primary-color: #ff6b35;
+  --primary-light: #ff9a5c;
+  --primary-dark: #e55a2b;
+  --bg-color: #f5f5f5;
+  --card-color: #ffffff;
+  --text-color: #333333;
+  --text-secondary: #999999;
+  --border-color: #e8e8e8;
+  --nav-bg: #ff6b35;
+  --nav-text: white;
+  --tab-selected: #ff6b35;
+  --tab-color: #999999;
+  --tab-bg: #ffffff;
+  --success-color: #52c41a;
+  --warning-color: #faad14;
+  --error-color: #ff4d4f;
+  background-color: var(--bg-color);
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+  color: var(--text-color);
+}
+view, text, image, input, button, scroll-view, swiper, swiper-item, navigator, icon, checkbox, radio, switch, slider, picker, picker-view, label, form, video, canvas, audio, map, web-view, progress, rich-text, movable-view, movable-area, cover-view, cover-image {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}

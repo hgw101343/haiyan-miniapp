@@ -1,6 +1,25 @@
+/* ===== CSS 变量 — 默认暖橙色主题 ===== */
 page {
-  background-color: #f5f5f5;
+  --primary-color: #ff6b35;
+  --primary-light: #ff9a5c;
+  --primary-dark: #e55a2b;
+  --bg-color: #f5f5f5;
+  --card-color: #ffffff;
+  --text-color: #333333;
+  --text-secondary: #999999;
+  --border-color: #e8e8e8;
+  --nav-bg: #ff6b35;
+  --nav-text: white;
+  --tab-selected: #ff6b35;
+  --tab-color: #999999;
+  --tab-bg: #ffffff;
+  --success-color: #52c41a;
+  --warning-color: #faad14;
+  --error-color: #ff4d4f;
+
+  background-color: var(--bg-color);
   font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  color: var(--text-color);
 }
 
 view, text, image, input, button, scroll-view, swiper, swiper-item, navigator, icon, checkbox, radio, switch, slider, picker, picker-view, label, form, video, canvas, audio, map, web-view, progress, rich-text, movable-view, movable-area, cover-view, cover-image {

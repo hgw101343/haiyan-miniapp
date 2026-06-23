@@ -9,15 +9,15 @@ export default {
   ],
   window: {
     backgroundTextStyle: "light",
-    navigationBarBackgroundColor: "#ff6b35",
-    navigationBarTitleText: "海艳私厨",
+    navigationBarBackgroundColor: "#666666",
+    navigationBarTitleText: "海宴私厨",
     navigationBarTextStyle: "white",
   },
   tabBar: {
-    color: "#999",
-    selectedColor: "#ff6b35",
-    backgroundColor: "#fff",
-    borderStyle: "black",
+    color: "#999999",
+    selectedColor: "#666666",
+    backgroundColor: "#ffffff",
+    borderStyle: "white",
     list: [
       {
         pagePath: "pages/index/index",
