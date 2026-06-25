@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import Taro from '@tarojs/taro'
 import { View, Text, ScrollView } from '@tarojs/components'
 import { orderApi, type Order } from '../../api'
@@ -28,31 +28,42 @@ export default function OrderListPage() {
   const [orders, setOrders] = useState<Order[]>([])
   const [activeTab, setActiveTab] = useState('')
   const [loading, setLoading] = useState(false)
-  const { isLoggedIn, login } = useUserStore()
+  const { isLoggedIn } = useUserStore()
 
-  useEffect(() => {
-    if (!isLoggedIn) {
-      Taro.showModal({
-        title: '提示',
-        content: '请先登录查看订单',
-        success: async (res) => { if (res.confirm) await login() }
-      })
-      return
-    }
-    loadOrders()
-  }, [activeTab, isLoggedIn])
-
-  const loadOrders = async () => {
+  /** 加载订单列表 */
+  const loadOrders = useCallback(async () => {
+    if (!isLoggedIn) return
     setLoading(true)
     try {
       const res = await orderApi.list({ status: activeTab || undefined })
       setOrders(res)
     } catch (e) {
-      console.error(e)
+      console.error('[订单] 加载失败:', e)
     } finally {
       setLoading(false)
     }
-  }
+  }, [activeTab, isLoggedIn])
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      // 未登录：提示并跳转到个人中心登录
+      Taro.showModal({
+        title: '提示',
+        content: '请先登录后再查看订单',
+        confirmText: '去登录',
+        success: (res) => {
+          if (res.confirm) {
+            Taro.switchTab({ url: '/pages/profile/index' })
+          } else {
+            // 取消：切换到首页
+            Taro.switchTab({ url: '/pages/index/index' })
+          }
+        }
+      })
+      return
+    }
+    loadOrders()
+  }, [isLoggedIn, loadOrders])
 
   return (
     <View className='order-page' style={themeStyle}>

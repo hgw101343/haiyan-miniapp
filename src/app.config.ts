@@ -1,11 +1,14 @@
 export default {
   pages: [
+    "pages/splash/index",
     "pages/index/index",
     "pages/category/index",
     "pages/cart/index",
     "pages/order/index",
     "pages/order/detail",
     "pages/profile/index",
+    "pages/feedback/index",
+    "pages/favorites/index",
   ],
   window: {
     backgroundTextStyle: "light",

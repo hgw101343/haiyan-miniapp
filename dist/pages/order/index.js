@@ -91,73 +91,68 @@ function OrderListPage() {
     loading = _useState6[0],
     setLoading = _useState6[1];
   var _useUserStore = (0,_store_user__WEBPACK_IMPORTED_MODULE_3__.useUserStore)(),
-    isLoggedIn = _useUserStore.isLoggedIn,
-    login = _useUserStore.login;
+    isLoggedIn = _useUserStore.isLoggedIn;
+
+  /** 加载订单列表 */
+  var loadOrders = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(/*#__PURE__*/(0,C_Users_hgw10_WorkBuddy_2026_06_23_15_03_39_food_order_system_miniapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_7__["default"])(/*#__PURE__*/(0,C_Users_hgw10_WorkBuddy_2026_06_23_15_03_39_food_order_system_miniapp_node_modules_babel_runtime_helpers_esm_regenerator_js__WEBPACK_IMPORTED_MODULE_8__["default"])().m(function _callee() {
+    var res, _t;
+    return (0,C_Users_hgw10_WorkBuddy_2026_06_23_15_03_39_food_order_system_miniapp_node_modules_babel_runtime_helpers_esm_regenerator_js__WEBPACK_IMPORTED_MODULE_8__["default"])().w(function (_context) {
+      while (1) switch (_context.p = _context.n) {
+        case 0:
+          if (isLoggedIn) {
+            _context.n = 1;
+            break;
+          }
+          return _context.a(2);
+        case 1:
+          setLoading(true);
+          _context.p = 2;
+          _context.n = 3;
+          return _api__WEBPACK_IMPORTED_MODULE_2__.orderApi.list({
+            status: activeTab || undefined
+          });
+        case 3:
+          res = _context.v;
+          setOrders(res);
+          _context.n = 5;
+          break;
+        case 4:
+          _context.p = 4;
+          _t = _context.v;
+          console.error('[订单] 加载失败:', _t);
+        case 5:
+          _context.p = 5;
+          setLoading(false);
+          return _context.f(5);
+        case 6:
+          return _context.a(2);
+      }
+    }, _callee, null, [[2, 4, 5, 6]]);
+  })), [activeTab, isLoggedIn]);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (!isLoggedIn) {
+      // 未登录：提示并跳转到个人中心登录
       _tarojs_taro__WEBPACK_IMPORTED_MODULE_1___default().showModal({
         title: '提示',
-        content: '请先登录查看订单',
-        success: function () {
-          var _success = (0,C_Users_hgw10_WorkBuddy_2026_06_23_15_03_39_food_order_system_miniapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_7__["default"])(/*#__PURE__*/(0,C_Users_hgw10_WorkBuddy_2026_06_23_15_03_39_food_order_system_miniapp_node_modules_babel_runtime_helpers_esm_regenerator_js__WEBPACK_IMPORTED_MODULE_8__["default"])().m(function _callee(res) {
-            return (0,C_Users_hgw10_WorkBuddy_2026_06_23_15_03_39_food_order_system_miniapp_node_modules_babel_runtime_helpers_esm_regenerator_js__WEBPACK_IMPORTED_MODULE_8__["default"])().w(function (_context) {
-              while (1) switch (_context.n) {
-                case 0:
-                  if (!res.confirm) {
-                    _context.n = 1;
-                    break;
-                  }
-                  _context.n = 1;
-                  return login();
-                case 1:
-                  return _context.a(2);
-              }
-            }, _callee);
-          }));
-          function success(_x) {
-            return _success.apply(this, arguments);
+        content: '请先登录后再查看订单',
+        confirmText: '去登录',
+        success: function success(res) {
+          if (res.confirm) {
+            _tarojs_taro__WEBPACK_IMPORTED_MODULE_1___default().switchTab({
+              url: '/pages/profile/index'
+            });
+          } else {
+            // 取消：切换到首页
+            _tarojs_taro__WEBPACK_IMPORTED_MODULE_1___default().switchTab({
+              url: '/pages/index/index'
+            });
           }
-          return success;
-        }()
+        }
       });
       return;
     }
     loadOrders();
-  }, [activeTab, isLoggedIn]);
-  var loadOrders = /*#__PURE__*/function () {
-    var _ref = (0,C_Users_hgw10_WorkBuddy_2026_06_23_15_03_39_food_order_system_miniapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_7__["default"])(/*#__PURE__*/(0,C_Users_hgw10_WorkBuddy_2026_06_23_15_03_39_food_order_system_miniapp_node_modules_babel_runtime_helpers_esm_regenerator_js__WEBPACK_IMPORTED_MODULE_8__["default"])().m(function _callee2() {
-      var res, _t;
-      return (0,C_Users_hgw10_WorkBuddy_2026_06_23_15_03_39_food_order_system_miniapp_node_modules_babel_runtime_helpers_esm_regenerator_js__WEBPACK_IMPORTED_MODULE_8__["default"])().w(function (_context2) {
-        while (1) switch (_context2.p = _context2.n) {
-          case 0:
-            setLoading(true);
-            _context2.p = 1;
-            _context2.n = 2;
-            return _api__WEBPACK_IMPORTED_MODULE_2__.orderApi.list({
-              status: activeTab || undefined
-            });
-          case 2:
-            res = _context2.v;
-            setOrders(res);
-            _context2.n = 4;
-            break;
-          case 3:
-            _context2.p = 3;
-            _t = _context2.v;
-            console.error(_t);
-          case 4:
-            _context2.p = 4;
-            setLoading(false);
-            return _context2.f(4);
-          case 5:
-            return _context2.a(2);
-        }
-      }, _callee2, null, [[1, 3, 4, 5]]);
-    }));
-    return function loadOrders() {
-      return _ref.apply(this, arguments);
-    };
-  }();
+  }, [isLoggedIn, loadOrders]);
   return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(_tarojs_components__WEBPACK_IMPORTED_MODULE_9__.View, {
     className: "order-page",
     style: themeStyle,

@@ -222,9 +222,17 @@ function CartPage() {
         return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_tarojs_components__WEBPACK_IMPORTED_MODULE_10__.View, {
           className: "cart-item",
           children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_tarojs_components__WEBPACK_IMPORTED_MODULE_10__.Image, {
-            src: item.dish.image || 'https://via.placeholder.com/80?text=菜',
+            src: item.dish.image || '',
             mode: "aspectFill",
-            className: "item-img"
+            className: "item-img",
+            onClick: function onClick() {
+              if (item.dish.image) {
+                _tarojs_taro__WEBPACK_IMPORTED_MODULE_1___default().previewImage({
+                  urls: [item.dish.image],
+                  current: item.dish.image
+                });
+              }
+            }
           }, void 0, false), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_tarojs_components__WEBPACK_IMPORTED_MODULE_10__.View, {
             className: "item-info",
             children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_tarojs_components__WEBPACK_IMPORTED_MODULE_10__.Text, {

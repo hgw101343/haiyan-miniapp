@@ -1,0 +1,490 @@
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[0].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[0].use[2]!./node_modules/resolve-url-loader/index.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[0].use[4]!./src/pages/splash/index.scss ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************************/
+@charset "UTF-8";
+/**
+ * 开屏广告页面样式
+ *
+ * 设计原则：
+ * 1. 食欲感 —— 使用暖色系渐变（橙→红），模拟美食温暖感
+ * 2. 吸引力 —— 多层次动画（弹跳/飘落/渐显/脉冲）让画面"活"起来
+ * 3. 品牌感 —— Logo 居中放大，配合光晕效果突出品牌形象
+ * 4. 简洁不杂乱 —— 信息层级清晰：Logo > 名称 > Slogan > 标签 > 操作
+ *
+ * WXSS 兼容说明：
+ * - 不使用 > * 通配符（WXSS 不支持）
+ * - 不使用 :nth-child()（WXSS 支持有限，已改为具体类名）
+ * - 不使用 CSS 变量 var()（WXSS 支持有限）
+ * - 不使用 // 注释（已改为 / * * /）
+ * - backdrop-filter 加 -webkit- 前缀（iOS 需要）
+ */
+.splash-page {
+  /* 全屏暖色渐变背景 —— 从浅橙到深红，营造温暖食欲感 */
+  width: 100vw;
+  height: 100vh;
+  background: -webkit-linear-gradient(290deg, #FFF5E6 0%, #FFE4C4 20%, #FFB347 50%, #FF8C42 75%, #E85D04 100%);
+  background: linear-gradient(160deg, #FFF5E6 0%, #FFE4C4 20%, #FFB347 50%, #FF8C42 75%, #E85D04 100%);
+  position: relative;
+  overflow: hidden;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  /* ========== 飘落食物装饰 ========== */
+}
+.splash-page .food-float {
+  position: absolute;
+  top: -60rpx;
+  /* 默认不可见，JS 设置 active 后开始动画 */
+  -webkit-animation: none;
+          animation: none;
+  z-index: 1;
+  pointer-events: none;
+}
+.splash-page .food-float.active {
+  /* WXSS 不支持 CSS 变量 var() 在 animation 中，duration 通过 inline style 覆盖 */
+  -webkit-animation: floatDown 5s linear infinite;
+          animation: floatDown 5s linear infinite;
+}
+.splash-page {
+  /* ========== 主内容区 ========== */
+}
+.splash-page .splash-content {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  z-index: 10;
+  padding: 0 60rpx;
+  /* 所有子元素初始状态：透明+下移 */
+  /* 注意：WXSS 不支持 " > * " 写法，需列出具体子元素类名 */
+}
+.splash-page .splash-content .logo-container,
+.splash-page .splash-content .brand-name,
+.splash-page .splash-content .slogan-row,
+.splash-page .splash-content .sub-slogan,
+.splash-page .splash-content .divider,
+.splash-page .splash-content .feature-tags {
+  opacity: 0;
+  -webkit-transform: translateY(30rpx);
+      -ms-transform: translateY(30rpx);
+          transform: translateY(30rpx);
+  -webkit-transition: opacity 0.6s ease-out, -webkit-transform 0.6s ease-out;
+  transition: opacity 0.6s ease-out, -webkit-transform 0.6s ease-out;
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out, -webkit-transform 0.6s ease-out;
+}
+.splash-page .splash-content {
+  /* ready 后依次显示（阶梯式 transition-delay） */
+  /* 注意：WXSS 对 nth-child 支持有限，改为按具体类名设置延迟 */
+}
+.splash-page .splash-content.ready .logo-container {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+      -ms-transform: translateY(0);
+          transform: translateY(0);
+  -webkit-transition-delay: 0.1s;
+          transition-delay: 0.1s;
+}
+.splash-page .splash-content.ready .brand-name {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+      -ms-transform: translateY(0);
+          transform: translateY(0);
+  -webkit-transition-delay: 0.35s;
+          transition-delay: 0.35s;
+}
+.splash-page .splash-content.ready .slogan-row {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+      -ms-transform: translateY(0);
+          transform: translateY(0);
+  -webkit-transition-delay: 0.55s;
+          transition-delay: 0.55s;
+}
+.splash-page .splash-content.ready .sub-slogan {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+      -ms-transform: translateY(0);
+          transform: translateY(0);
+  -webkit-transition-delay: 0.75s;
+          transition-delay: 0.75s;
+}
+.splash-page .splash-content.ready .divider {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+      -ms-transform: translateY(0);
+          transform: translateY(0);
+  -webkit-transition-delay: 0.9s;
+          transition-delay: 0.9s;
+}
+.splash-page .splash-content.ready .feature-tags {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+      -ms-transform: translateY(0);
+          transform: translateY(0);
+  -webkit-transition-delay: 1.05s;
+          transition-delay: 1.05s;
+}
+.splash-page {
+  /* ---------- Logo 区域 ---------- */
+}
+.splash-page .logo-container {
+  position: relative;
+  width: 280rpx;
+  height: 280rpx;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-bottom: 40rpx;
+  /* 入场动画：从缩小到正常大小 + 弹跳 */
+  -webkit-animation: logoPopIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s both;
+          animation: logoPopIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s both;
+  /* Logo 光晕 —— 脉冲呼吸效果 */
+}
+.splash-page .logo-container .logo-glow {
+  position: absolute;
+  width: 340rpx;
+  height: 340rpx;
+  border-radius: 50%;
+  background: -webkit-radial-gradient(circle, rgba(255, 200, 87, 0.5) 0%, rgba(255, 140, 66, 0.15) 50%, transparent 70%);
+  background: radial-gradient(circle, rgba(255, 200, 87, 0.5) 0%, rgba(255, 140, 66, 0.15) 50%, transparent 70%);
+  -webkit-animation: glowPulse 2.5s ease-in-out infinite;
+          animation: glowPulse 2.5s ease-in-out infinite;
+  z-index: 0;
+}
+.splash-page .logo-container .logo-img {
+  width: 240rpx;
+  height: 240rpx;
+  border-radius: 40rpx;
+  z-index: 1;
+  -webkit-box-shadow: 0 10rpx 40rpx rgba(232, 93, 4, 0.25), 0 4rpx 16rpx rgba(232, 93, 4, 0.15);
+          box-shadow: 0 10rpx 40rpx rgba(232, 93, 4, 0.25), 0 4rpx 16rpx rgba(232, 93, 4, 0.15);
+  /* 白色内边框模拟相框效果 */
+  border: 6rpx solid rgba(255, 255, 255, 0.85);
+}
+.splash-page {
+  /* ---------- 品牌名称 ---------- */
+}
+.splash-page .brand-name {
+  font-size: 56rpx;
+  font-weight: 800;
+  color: #8B4513;
+  letter-spacing: 8rpx;
+  margin-bottom: 20rpx;
+  text-shadow: 0 2rpx 8rpx rgba(139, 69, 19, 0.15);
+}
+.splash-page {
+  /* ---------- Slogan 主标语 ---------- */
+}
+.splash-page .slogan-row {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 12rpx;
+  margin-bottom: 16rpx;
+}
+.splash-page .slogan-row .slogan-text {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #D2691E;
+  letter-spacing: 2rpx;
+}
+.splash-page .slogan-row .slogan-dot {
+  font-size: 28rpx;
+  color: #FF8C42;
+  font-weight: bold;
+}
+.splash-page {
+  /* ---------- 副标题 ---------- */
+}
+.splash-page .sub-slogan {
+  font-size: 24rpx;
+  color: #A0522D;
+  letter-spacing: 3rpx;
+  margin-bottom: 36rpx;
+  opacity: 0.85 !important;
+}
+.splash-page {
+  /* ---------- 分隔线 ---------- */
+}
+.splash-page .divider {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 20rpx;
+  margin-bottom: 36rpx;
+}
+.splash-page .divider .divider-line {
+  width: 80rpx;
+  height: 2rpx;
+  background: -webkit-gradient(linear, left top, right top, from(transparent), color-stop(#FFB347), to(transparent));
+  background: -webkit-linear-gradient(left, transparent, #FFB347, transparent);
+  background: linear-gradient(90deg, transparent, #FFB347, transparent);
+  border-radius: 2rpx;
+}
+.splash-page .divider .divider-icon {
+  font-size: 28rpx;
+}
+.splash-page {
+  /* ---------- 特色标签 ---------- */
+}
+.splash-page .feature-tags {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 28rpx;
+}
+.splash-page .feature-tags .tag {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 8rpx;
+  padding: 18rpx 24rpx;
+  background: rgba(255, 255, 255, 0.55);
+  border-radius: 20rpx;
+  /* 毛玻璃效果：WXSS 需 -webkit- 前缀 */
+  -webkit-backdrop-filter: blur(8rpx);
+  backdrop-filter: blur(8rpx);
+  -webkit-box-shadow: 0 4rpx 16rpx rgba(232, 93, 4, 0.08);
+          box-shadow: 0 4rpx 16rpx rgba(232, 93, 4, 0.08);
+}
+.splash-page .feature-tags .tag .tag-emoji {
+  font-size: 36rpx;
+}
+.splash-page .feature-tags .tag .tag-text {
+  font-size: 22rpx;
+  color: #8B4513;
+  font-weight: 500;
+}
+.splash-page {
+  /* ========== 底部操作区 ========== */
+}
+.splash-page .splash-footer {
+  position: absolute;
+  bottom: 120rpx;
+  left: 0;
+  right: 0;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 20rpx;
+  z-index: 10;
+  opacity: 0;
+  -webkit-transform: translateY(30rpx);
+      -ms-transform: translateY(30rpx);
+          transform: translateY(30rpx);
+  -webkit-transition: opacity 0.6s ease-out 1.3s, -webkit-transform 0.6s ease-out 1.3s;
+  transition: opacity 0.6s ease-out 1.3s, -webkit-transform 0.6s ease-out 1.3s;
+  transition: opacity 0.6s ease-out 1.3s, transform 0.6s ease-out 1.3s;
+  transition: opacity 0.6s ease-out 1.3s, transform 0.6s ease-out 1.3s, -webkit-transform 0.6s ease-out 1.3s;
+}
+.splash-page .splash-footer.ready {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+      -ms-transform: translateY(0);
+          transform: translateY(0);
+}
+.splash-page .splash-footer {
+  /* "立即体验"按钮 */
+}
+.splash-page .splash-footer .enter-btn {
+  padding: 22rpx 80rpx;
+  background: -webkit-linear-gradient(315deg, #FF6B35, #E85D04);
+  background: linear-gradient(135deg, #FF6B35, #E85D04);
+  border-radius: 50rpx;
+  /* WXSS 不支持 box-shadow 多组值中的 inset 在某些版本，保留但注意兼容性 */
+  -webkit-box-shadow: 0 8rpx 32rpx rgba(232, 93, 4, 0.35), 0 2rpx 8rpx rgba(232, 93, 4, 0.2);
+          box-shadow: 0 8rpx 32rpx rgba(232, 93, 4, 0.35), 0 2rpx 8rpx rgba(232, 93, 4, 0.2);
+  /* 微妙呼吸动画吸引点击 */
+  -webkit-animation: btnBreath 2s ease-in-out infinite 1.5s;
+          animation: btnBreath 2s ease-in-out infinite 1.5s;
+}
+.splash-page .splash-footer .enter-btn:active {
+  -webkit-transform: scale(0.96);
+      -ms-transform: scale(0.96);
+          transform: scale(0.96);
+  -webkit-box-shadow: 0 4rpx 16rpx rgba(232, 93, 4, 0.3);
+          box-shadow: 0 4rpx 16rpx rgba(232, 93, 4, 0.3);
+}
+.splash-page .splash-footer .enter-btn .enter-text {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 6rpx;
+}
+.splash-page .splash-footer .copyright {
+  font-size: 20rpx;
+  color: rgba(139, 69, 19, 0.4);
+  letter-spacing: 1rpx;
+}
+/* ==================== 关键帧动画 ==================== */
+/* 食物飘落 —— 从顶部缓慢飘落到底部消失 */
+/* WXSS 对 calc() 支持有限，100vh 直接使用 */
+@-webkit-keyframes floatDown {
+  0% {
+    -webkit-transform: translateY(-60rpx) rotate(0deg) scale(0.8);
+            transform: translateY(-60rpx) rotate(0deg) scale(0.8);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.25;
+  }
+  90% {
+    opacity: 0.25;
+  }
+  100% {
+    -webkit-transform: translateY(100vh) rotate(360deg) scale(0.6);
+            transform: translateY(100vh) rotate(360deg) scale(0.6);
+    opacity: 0;
+  }
+}
+@keyframes floatDown {
+  0% {
+    -webkit-transform: translateY(-60rpx) rotate(0deg) scale(0.8);
+            transform: translateY(-60rpx) rotate(0deg) scale(0.8);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.25;
+  }
+  90% {
+    opacity: 0.25;
+  }
+  100% {
+    -webkit-transform: translateY(100vh) rotate(360deg) scale(0.6);
+            transform: translateY(100vh) rotate(360deg) scale(0.6);
+    opacity: 0;
+  }
+}
+/* Logo 弹跳入场 */
+@-webkit-keyframes logoPopIn {
+  0% {
+    -webkit-transform: scale(0.3);
+            transform: scale(0.3);
+    opacity: 0;
+  }
+  60% {
+    -webkit-transform: scale(1.08);
+            transform: scale(1.08);
+    opacity: 1;
+  }
+  80% {
+    -webkit-transform: scale(0.95);
+            transform: scale(0.95);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+  }
+}
+@keyframes logoPopIn {
+  0% {
+    -webkit-transform: scale(0.3);
+            transform: scale(0.3);
+    opacity: 0;
+  }
+  60% {
+    -webkit-transform: scale(1.08);
+            transform: scale(1.08);
+    opacity: 1;
+  }
+  80% {
+    -webkit-transform: scale(0.95);
+            transform: scale(0.95);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+  }
+}
+/* 光晕脉冲呼吸 */
+@-webkit-keyframes glowPulse {
+  0%, 100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    -webkit-transform: scale(1.15);
+            transform: scale(1.15);
+    opacity: 1;
+  }
+}
+@keyframes glowPulse {
+  0%, 100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    -webkit-transform: scale(1.15);
+            transform: scale(1.15);
+    opacity: 1;
+  }
+}
+/* 按钮呼吸动画 —— 吸引用户点击 */
+/* WXSS 对 box-shadow 中的 inset 支持有限，按钮动画中去掉 inset 阴影 */
+@-webkit-keyframes btnBreath {
+  0%, 100% {
+    -webkit-box-shadow: 0 8rpx 32rpx rgba(232, 93, 4, 0.35), 0 2rpx 8rpx rgba(232, 93, 4, 0.2);
+            box-shadow: 0 8rpx 32rpx rgba(232, 93, 4, 0.35), 0 2rpx 8rpx rgba(232, 93, 4, 0.2);
+  }
+  50% {
+    -webkit-box-shadow: 0 12rpx 48rpx rgba(232, 93, 4, 0.5), 0 4rpx 16rpx rgba(232, 93, 4, 0.3);
+            box-shadow: 0 12rpx 48rpx rgba(232, 93, 4, 0.5), 0 4rpx 16rpx rgba(232, 93, 4, 0.3);
+    -webkit-transform: translateY(-2rpx);
+            transform: translateY(-2rpx);
+  }
+}
+@keyframes btnBreath {
+  0%, 100% {
+    -webkit-box-shadow: 0 8rpx 32rpx rgba(232, 93, 4, 0.35), 0 2rpx 8rpx rgba(232, 93, 4, 0.2);
+            box-shadow: 0 8rpx 32rpx rgba(232, 93, 4, 0.35), 0 2rpx 8rpx rgba(232, 93, 4, 0.2);
+  }
+  50% {
+    -webkit-box-shadow: 0 12rpx 48rpx rgba(232, 93, 4, 0.5), 0 4rpx 16rpx rgba(232, 93, 4, 0.3);
+            box-shadow: 0 12rpx 48rpx rgba(232, 93, 4, 0.5), 0 4rpx 16rpx rgba(232, 93, 4, 0.3);
+    -webkit-transform: translateY(-2rpx);
+            transform: translateY(-2rpx);
+  }
+}

@@ -57,6 +57,7 @@
   display: flex;
   padding: 16rpx 0;
   border-bottom: 1rpx solid var(--border-color);
+  position: relative;
 }
 .dish-row .dish-img {
   width: 120rpx;
@@ -65,6 +66,31 @@
   -webkit-flex-shrink: 0;
       -ms-flex-negative: 0;
           flex-shrink: 0;
+}
+.dish-row .fav-btn {
+  position: absolute;
+  top: 24rpx;
+  right: 8rpx;
+  width: 52rpx;
+  height: 52rpx;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-size: 28rpx;
+  -webkit-box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+          box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+  z-index: 5;
+}
+.dish-row .fav-btn.active {
+  background: rgba(255, 68, 68, 0.15);
 }
 .dish-row .dish-meta {
   -webkit-flex: 1;

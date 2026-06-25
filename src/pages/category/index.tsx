@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useCallback } from "react";
 import Taro from "@tarojs/taro";
-import { View, Text, ScrollView, Image } from "@tarojs/components";
-import { categoryApi, dishApi, type Category, type Dish } from "../../api";
+import { View, Text, ScrollView } from "@tarojs/components";
+import { categoryApi, dishApi, favoriteApi, type Category, type Dish } from "../../api";
 import { useCartStore } from "../../store/cart";
+import { useUserStore } from "../../store/user";
 import { useTheme } from "../../hooks/useTheme";
+import DishImage from "../../components/DishImage";
 import "./index.scss";
 
 export default function CategoryPage() {
@@ -13,8 +15,11 @@ export default function CategoryPage() {
   const [dishes, setDishes] = useState<Dish[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  /** 已收藏的菜品 ID 集合 */
+  const [favoriteIds, setFavoriteIds] = useState<Set<number>>(new Set());
   const { addItem, removeItem, items, totalCount, totalAmount } =
     useCartStore();
+  const { isLoggedIn } = useUserStore();
 
   useEffect(() => {
     loadCategories();
@@ -40,11 +45,42 @@ export default function CategoryPage() {
           setActiveCat(cats[0].id);
         }
       }
+      // 加载收藏列表（仅登录用户）
+      if (isLoggedIn) {
+        try {
+          const favs = await favoriteApi.list();
+          setFavoriteIds(new Set(favs.map((f) => f.dishId)));
+        } catch {}
+      }
     } catch (err) {
       console.error("加载分类失败:", err);
       setError(true);
     } finally {
       setLoading(false);
+    }
+  };
+
+  /** 切换收藏状态（需登录，乐观更新） */
+  const toggleFavorite = async (dishId: number) => {
+    if (!isLoggedIn) {
+      Taro.showToast({ title: '请先登录', icon: 'none', duration: 1500 })
+      return
+    }
+    const isFav = favoriteIds.has(dishId);
+    setFavoriteIds((prev) => {
+      const next = new Set(prev);
+      isFav ? next.delete(dishId) : next.add(dishId);
+      return next;
+    });
+    try {
+      if (isFav) await favoriteApi.remove(dishId);
+      else await favoriteApi.add(dishId);
+    } catch {
+      setFavoriteIds((prev) => {
+        const next = new Set(prev);
+        isFav ? next.add(dishId) : next.delete(dishId);
+        return next;
+      });
     }
   };
 
@@ -118,11 +154,18 @@ export default function CategoryPage() {
           ) : (
             dishes.map((dish) => (
               <View key={dish.id} className="dish-row">
-                <Image
-                  src={dish.image || "https://via.placeholder.com/100?text=菜"}
+                <DishImage
+                  src={dish.image || ""}
                   mode="aspectFill"
                   className="dish-img"
                 />
+                {/* 收藏按钮 */}
+                <View
+                  className={`fav-btn ${favoriteIds.has(dish.id) ? "active" : ""}`}
+                  onClick={(e) => { e.stopPropagation(); toggleFavorite(dish.id); }}
+                >
+                  <Text>{favoriteIds.has(dish.id) ? "❤️" : "🤍"}</Text>
+                </View>
                 <View className="dish-meta">
                   <Text className="dish-name">{dish.name}</Text>
                   {dish.isFeatured && <Text className="tag-hot">热门</Text>}

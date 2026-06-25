@@ -27,6 +27,19 @@ require("./runtime");
 
 
 
+/**
+ * 应用启动时的主题加载与应用的完整流程
+ *
+ * 分为 4 步：
+ * 1. 尝试从后端 API 拉取最新主题配置（远程优先）
+ * 2. 网络不可达时降级读取本地缓存的主题配置（localStorage 兜底）
+ * 3. 将拿到的主题写入本地缓存（各页面 useTheme hook 从此读取）
+ * 4. 应用导航栏颜色（所有页面通用）
+ *
+ * TabBar 颜色由各 TabBar 页面自身的 useTheme hook 在 useDidShow 中调用 applyTabBarTheme 设置，
+ * 确保只在 TabBar 页面上执行，避免在 splash/order-detail 等非 TabBar 页报错。
+ */
+
 function fetchAndApplyTheme() {
   return _fetchAndApplyTheme.apply(this, arguments);
 }
@@ -36,6 +49,7 @@ function _fetchAndApplyTheme() {
     return (0,C_Users_hgw10_WorkBuddy_2026_06_23_15_03_39_food_order_system_miniapp_node_modules_babel_runtime_helpers_esm_regenerator_js__WEBPACK_IMPORTED_MODULE_5__["default"])().w(function (_context) {
       while (1) switch (_context.p = _context.n) {
         case 0:
+          // 使用默认主题作为初始值
           theme = _hooks_useTheme__WEBPACK_IMPORTED_MODULE_2__.DEFAULT_THEME; // 1. 从后端拉取主题
           _context.p = 1;
           _context.n = 2;
@@ -46,7 +60,7 @@ function _fetchAndApplyTheme() {
         case 2:
           res = _context.v;
           if (res.statusCode === 200) {
-            data = res.data.data;
+            data = res.data.data; // 确认返回数据包含有效的 primaryColor（简单校验）
             if (data && data.primaryColor) {
               theme = data;
             }
@@ -56,22 +70,17 @@ function _fetchAndApplyTheme() {
         case 3:
           _context.p = 3;
           _t = _context.v;
-          // 网络不可达则使用本地缓存
+          // 2. 网络不可达则使用本地缓存
           try {
             cached = _tarojs_taro__WEBPACK_IMPORTED_MODULE_1___default().getStorageSync('app_theme');
             if (cached) theme = cached;
           } catch (_unused2) {}
         case 4:
-          // 2. 缓存到本地（各页面 useTheme hook 读取）
+          // 3. 缓存到本地（各页面 useTheme hook 读取此缓存）
           _tarojs_taro__WEBPACK_IMPORTED_MODULE_1___default().setStorageSync('app_theme', theme);
 
-          // 3. 应用导航栏和 TabBar 颜色
+          // 4. 应用导航栏颜色（所有页面通用，包括 splash 等非 TabBar 页）
           (0,_hooks_useTheme__WEBPACK_IMPORTED_MODULE_2__.applyNavBarTheme)(theme);
-          // TabBar 可能尚未就绪，延迟再执行一次
-          (0,_hooks_useTheme__WEBPACK_IMPORTED_MODULE_2__.applyTabBarTheme)(theme);
-          setTimeout(function () {
-            return (0,_hooks_useTheme__WEBPACK_IMPORTED_MODULE_2__.applyTabBarTheme)(theme);
-          }, 800);
         case 5:
           return _context.a(2);
       }
@@ -82,17 +91,35 @@ function _fetchAndApplyTheme() {
 function App(_ref) {
   var children = _ref.children;
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    // 组件挂载时立即加载并应用主题
     fetchAndApplyTheme();
-  }, []);
 
-  // App 从后台切回前台时重新应用主题（用户可能在管理后台改了主题）
-  _tarojs_taro__WEBPACK_IMPORTED_MODULE_1___default().useDidShow(function () {
-    var theme = _tarojs_taro__WEBPACK_IMPORTED_MODULE_1___default().getStorageSync('app_theme');
-    if (theme) {
-      (0,_hooks_useTheme__WEBPACK_IMPORTED_MODULE_2__.applyNavBarTheme)(theme);
-      (0,_hooks_useTheme__WEBPACK_IMPORTED_MODULE_2__.applyTabBarTheme)(theme);
-    }
-  });
+    /**
+     * 注册 App 从后台切回前台的事件监听
+     *
+     * 使用 Taro.onAppShow() 而非 useDidShow() 的原因：
+     * Taro 4.x 版本中，在 App 层级使用 useDidShow Hook 可能导致渲染层
+     * 事件监听异常（页面未挂载时 Hook 生命周期不匹配）。
+     * 因此采用原生 Taro.onAppShow() API，添加手动事件绑定。
+     *
+     * 回调中重新从缓存读取主题并应用到导航栏和 TabBar，
+     * 确保从其他页面（如管理后台）返回时主题保持最新。
+     */
+    var off = _tarojs_taro__WEBPACK_IMPORTED_MODULE_1___default().onAppShow(function () {
+      var theme = _tarojs_taro__WEBPACK_IMPORTED_MODULE_1___default().getStorageSync('app_theme');
+      if (theme) {
+        (0,_hooks_useTheme__WEBPACK_IMPORTED_MODULE_2__.applyNavBarTheme)(theme);
+      }
+    });
+
+    /**
+     * 组件卸载时移除事件监听，防止内存泄漏
+     * Taro.onAppShow 返回一个取消监听的函数，在 cleanup 中调用
+     */
+    return function () {
+      if (typeof off === 'function') off();
+    };
+  }, []);
   return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
     children: children
   }, void 0, false);
@@ -128,7 +155,7 @@ function App(_ref) {
 
 
 
-var config = {"pages":["pages/index/index","pages/category/index","pages/cart/index","pages/order/index","pages/order/detail","pages/profile/index"],"window":{"backgroundTextStyle":"light","navigationBarBackgroundColor":"#666666","navigationBarTitleText":"海艳私厨","navigationBarTextStyle":"white"},"tabBar":{"color":"#999999","selectedColor":"#666666","backgroundColor":"#ffffff","borderStyle":"white","list":[{"pagePath":"pages/index/index","text":"首页","iconPath":"assets/icons/home.png","selectedIconPath":"assets/icons/home-active.png"},{"pagePath":"pages/category/index","text":"菜单","iconPath":"assets/icons/menu.png","selectedIconPath":"assets/icons/menu-active.png"},{"pagePath":"pages/cart/index","text":"购物车","iconPath":"assets/icons/cart.png","selectedIconPath":"assets/icons/cart-active.png"},{"pagePath":"pages/order/index","text":"订单","iconPath":"assets/icons/order.png","selectedIconPath":"assets/icons/order-active.png"},{"pagePath":"pages/profile/index","text":"我的","iconPath":"assets/icons/profile.png","selectedIconPath":"assets/icons/profile-active.png"}]},"requiredPrivateInfos":["getLocation"],"permission":{"scope.userLocation":{"desc":"用于展示附近门店"}},"sitemapLocation":"sitemap.json"};
+var config = {"pages":["pages/splash/index","pages/index/index","pages/category/index","pages/cart/index","pages/order/index","pages/order/detail","pages/profile/index","pages/feedback/index","pages/favorites/index"],"window":{"backgroundTextStyle":"light","navigationBarBackgroundColor":"#666666","navigationBarTitleText":"海宴私厨","navigationBarTextStyle":"white"},"tabBar":{"color":"#999999","selectedColor":"#666666","backgroundColor":"#ffffff","borderStyle":"white","list":[{"pagePath":"pages/index/index","text":"首页","iconPath":"assets/icons/home.png","selectedIconPath":"assets/icons/home-active.png"},{"pagePath":"pages/category/index","text":"菜单","iconPath":"assets/icons/menu.png","selectedIconPath":"assets/icons/menu-active.png"},{"pagePath":"pages/cart/index","text":"购物车","iconPath":"assets/icons/cart.png","selectedIconPath":"assets/icons/cart-active.png"},{"pagePath":"pages/order/index","text":"订单","iconPath":"assets/icons/order.png","selectedIconPath":"assets/icons/order-active.png"},{"pagePath":"pages/profile/index","text":"我的","iconPath":"assets/icons/profile.png","selectedIconPath":"assets/icons/profile-active.png"}]},"requiredPrivateInfos":["getLocation"],"permission":{"scope.userLocation":{"desc":"用于展示附近门店"}},"sitemapLocation":"sitemap.json"};
 _tarojs_runtime__WEBPACK_IMPORTED_MODULE_5__.taroWindowProvider.__taroAppConfig = config
 var inst = App((0,_tarojs_plugin_framework_react_dist_runtime__WEBPACK_IMPORTED_MODULE_6__.createReactApp)(_node_modules_tarojs_taro_loader_lib_entry_cache_js_name_app_app_tsx__WEBPACK_IMPORTED_MODULE_2__["default"], react__WEBPACK_IMPORTED_MODULE_3__, react_dom__WEBPACK_IMPORTED_MODULE_4__["default"], config))
 

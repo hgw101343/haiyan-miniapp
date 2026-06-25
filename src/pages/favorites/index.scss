@@ -1,0 +1,138 @@
+/* 我的收藏页样式 */
+.favorites-page {
+  min-height: 100vh;
+  padding-bottom: 20rpx;
+}
+
+.loading-wrap, .empty-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 200rpx;
+}
+
+.empty-icon {
+  font-size: 100rpx;
+  margin-bottom: 24rpx;
+}
+
+.empty-text {
+  font-size: 30rpx;
+  color: #666;
+  margin-bottom: 12rpx;
+}
+
+.empty-hint {
+  font-size: 26rpx;
+  color: #999;
+  margin-bottom: 40rpx;
+}
+
+.go-menu-btn {
+  padding: 16rpx 48rpx;
+  background: linear-gradient(135deg, #ff6b35, #ff4444);
+  color: #fff;
+  border-radius: 40rpx;
+  font-size: 28rpx;
+}
+
+.favorites-list {
+  padding: 16rpx 20rpx;
+}
+
+.fav-card {
+  display: flex;
+  background: #fff;
+  border-radius: 12rpx;
+  padding: 16rpx;
+  margin-bottom: 16rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.06);
+}
+
+.fav-img {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 8rpx;
+  flex-shrink: 0;
+}
+
+.fav-info {
+  flex: 1;
+  margin-left: 16rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.fav-name {
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #333;
+}
+
+.fav-desc {
+  font-size: 24rpx;
+  color: #999;
+  margin-top: 6rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fav-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8rpx;
+}
+
+.fav-price {
+  font-size: 32rpx;
+  color: #ff4444;
+  font-weight: 600;
+}
+
+.fav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+}
+
+.unfavorite-btn {
+  font-size: 36rpx;
+  padding: 4rpx;
+}
+
+.quantity-ctrl {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+}
+
+.btn-minus, .btn-add {
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #fff;
+}
+
+.btn-minus {
+  background: #ff9800;
+}
+
+.btn-add {
+  background: #ff4444;
+}
+
+.qty-num {
+  font-size: 28rpx;
+  font-weight: 500;
+  min-width: 32rpx;
+  text-align: center;
+}

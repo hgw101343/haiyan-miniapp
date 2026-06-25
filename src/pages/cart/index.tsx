@@ -99,9 +99,14 @@ export default function CartPage() {
         {items.map(item => (
           <View key={item.dish.id} className='cart-item'>
             <Image
-              src={item.dish.image || 'https://via.placeholder.com/80?text=菜'}
+              src={item.dish.image || ''}
               mode='aspectFill'
               className='item-img'
+              onClick={() => {
+                if (item.dish.image) {
+                  Taro.previewImage({ urls: [item.dish.image], current: item.dish.image })
+                }
+              }}
             />
             <View className='item-info'>
               <Text className='item-name'>{item.dish.name}</Text>
