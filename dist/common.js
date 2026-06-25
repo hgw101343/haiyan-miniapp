@@ -11,11 +11,15 @@
 /* harmony export */   UPLOAD_BASE: function() { return /* binding */ UPLOAD_BASE; },
 /* harmony export */   authApi: function() { return /* binding */ authApi; },
 /* harmony export */   categoryApi: function() { return /* binding */ categoryApi; },
+/* harmony export */   createDish: function() { return /* binding */ createDish; },
+/* harmony export */   deleteDish: function() { return /* binding */ deleteDish; },
 /* harmony export */   dishApi: function() { return /* binding */ dishApi; },
 /* harmony export */   favoriteApi: function() { return /* binding */ favoriteApi; },
 /* harmony export */   feedbackApi: function() { return /* binding */ feedbackApi; },
 /* harmony export */   orderApi: function() { return /* binding */ orderApi; },
-/* harmony export */   paymentApi: function() { return /* binding */ paymentApi; }
+/* harmony export */   paymentApi: function() { return /* binding */ paymentApi; },
+/* harmony export */   toggleDishAvailable: function() { return /* binding */ toggleDishAvailable; },
+/* harmony export */   updateDish: function() { return /* binding */ updateDish; }
 /* harmony export */ });
 /* unused harmony export request */
 /* harmony import */ var C_Users_hgw10_WorkBuddy_2026_06_23_15_03_39_food_order_system_miniapp_node_modules_babel_runtime_helpers_esm_regenerator_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/regenerator.js */ "./node_modules/@babel/runtime/helpers/esm/regenerator.js");
@@ -415,6 +419,57 @@ var favoriteApi = {
 };
 
 /** 收藏项（后端返回的结构，含嵌套菜品信息） */
+
+// ======== 菜品管理 API（管理员） ========
+
+/**
+ * 更新菜品（管理员）
+ * PUT /api/dishes/:id
+ */
+var updateDish = function updateDish(id, data) {
+  return request({
+    url: "/dishes/".concat(id),
+    method: 'PUT',
+    data: data
+  });
+};
+
+/**
+ * 删除菜品（管理员，软删除）
+ * DELETE /api/dishes/:id
+ */
+var deleteDish = function deleteDish(id) {
+  return request({
+    url: "/dishes/".concat(id),
+    method: 'DELETE'
+  });
+};
+
+/**
+ * 切换菜品上下架状态（管理员）
+ * PATCH /api/dishes/:id/available
+ */
+var toggleDishAvailable = function toggleDishAvailable(id, isActive) {
+  return request({
+    url: "/dishes/".concat(id, "/available"),
+    method: 'PATCH',
+    data: {
+      isActive: isActive
+    }
+  });
+};
+
+/**
+ * 新增菜品（管理员）
+ * POST /api/dishes
+ */
+var createDish = function createDish(data) {
+  return request({
+    url: "/dishes",
+    method: "POST",
+    data: data
+  });
+};
 
 /***/ }),
 

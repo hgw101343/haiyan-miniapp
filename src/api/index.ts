@@ -216,7 +216,7 @@ export const dishApi = {
             .map(([k, v]) => [k, String(v)]),
         ).toString()
       : "";
-    return request<{ data: Dish[]; pagination: Pagination }>({
+    return request<Dish[]>({
       url: "/dishes" + (qs ? "?" + qs : ""),
       needAuth: false,
     });
@@ -469,3 +469,33 @@ export interface FavoriteItem {
   dish: Dish;
   createdAt: string;
 }
+
+// ======== 菜品管理 API（管理员） ========
+
+/**
+ * 更新菜品（管理员）
+ * PUT /api/dishes/:id
+ */
+export const updateDish = (id: number, data: Partial<Dish> & { categoryId?: number }) =>
+  request<Dish>({ url: `/dishes/${id}`, method: 'PUT', data });
+
+/**
+ * 删除菜品（管理员，软删除）
+ * DELETE /api/dishes/:id
+ */
+export const deleteDish = (id: number) =>
+  request<{ success: boolean }>({ url: `/dishes/${id}`, method: 'DELETE' });
+
+/**
+ * 切换菜品上下架状态（管理员）
+ * PATCH /api/dishes/:id/available
+ */
+export const toggleDishAvailable = (id: number, isActive: boolean) =>
+  request<Dish>({ url: `/dishes/${id}/available`, method: 'PATCH', data: { isActive } });
+
+/**
+ * 新增菜品（管理员）
+ * POST /api/dishes
+ */
+export const createDish = (data: Partial<Dish> & { categoryId?: number }) =>
+  request<Dish>({ url: "/dishes", method: "POST", data });

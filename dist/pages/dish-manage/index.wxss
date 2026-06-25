@@ -1,0 +1,322 @@
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[0].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[0].use[2]!./node_modules/resolve-url-loader/index.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[0].use[4]!./src/pages/dish-manage/index.scss ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************************************************/
+@charset "UTF-8";
+/* 菜品管理列表页样式 */
+.dish-manage-page {
+  min-height: 100vh;
+  background: #f5f5f5;
+  padding-bottom: 120rpx;
+}
+/* 顶部操作栏 */
+.manage-header {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: #fff;
+  padding: 20rpx 24rpx;
+  -webkit-box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.06);
+          box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.06);
+}
+.search-wrap {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: #f5f5f5;
+  border-radius: 40rpx;
+  padding: 0 24rpx;
+  height: 72rpx;
+  margin-bottom: 16rpx;
+}
+.search-input {
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  height: 72rpx;
+  font-size: 28rpx;
+  background: transparent;
+}
+.search-btn {
+  -webkit-flex-shrink: 0;
+      -ms-flex-negative: 0;
+          flex-shrink: 0;
+  padding: 0 24rpx;
+  height: 56rpx;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background: #ff6b35;
+  color: #fff;
+  border-radius: 28rpx;
+  font-size: 26rpx;
+  font-weight: 500;
+}
+.header-actions {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-justify-content: flex-end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  gap: 16rpx;
+}
+.refresh-btn,
+.add-btn {
+  padding: 10rpx 28rpx;
+  border-radius: 28rpx;
+  font-size: 26rpx;
+  font-weight: 500;
+}
+.refresh-btn {
+  background: #f5f5f5;
+  color: #666;
+}
+.add-btn {
+  background: -webkit-linear-gradient(315deg, #ff6b35, #ff8c42);
+  background: linear-gradient(135deg, #ff6b35, #ff8c42);
+  color: #fff;
+}
+/* 分类筛选滚动条 */
+.cat-filter-scroll {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  white-space: nowrap;
+  padding: 20rpx 24rpx;
+  gap: 16rpx;
+  background: #fff;
+  border-bottom: 1rpx solid #f0f0f0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.cat-filter-item {
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 10rpx 24rpx;
+  border-radius: 28rpx;
+  background: #f5f5f5;
+  font-size: 24rpx;
+  color: #666;
+  -webkit-flex-shrink: 0;
+      -ms-flex-negative: 0;
+          flex-shrink: 0;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+.cat-filter-item.active {
+  background: -webkit-linear-gradient(315deg, #ff6b35, #ff8c42);
+  background: linear-gradient(135deg, #ff6b35, #ff8c42);
+  color: #fff;
+  font-weight: 500;
+}
+/* 菜品列表 */
+.dish-list {
+  padding: 20rpx 24rpx;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 20rpx;
+}
+.dish-card {
+  background: #fff;
+  border-radius: 20rpx;
+  overflow: hidden;
+  -webkit-box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.06);
+          box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.06);
+}
+.dish-img-wrap {
+  position: relative;
+  width: 100%;
+  height: 300rpx;
+  overflow: hidden;
+}
+.dish-img-wrap image {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.status-badge {
+  position: absolute;
+  top: 16rpx;
+  left: 16rpx;
+  padding: 6rpx 16rpx;
+  border-radius: 16rpx;
+  font-size: 22rpx;
+  font-weight: 500;
+}
+.status-badge.active {
+  background: rgba(76, 175, 80, 0.9);
+  color: #fff;
+}
+.status-badge.inactive {
+  background: rgba(158, 158, 158, 0.9);
+  color: #fff;
+}
+.recommend-badge {
+  position: absolute;
+  top: 16rpx;
+  right: 16rpx;
+  padding: 6rpx 16rpx;
+  border-radius: 16rpx;
+  background: rgba(255, 193, 7, 0.9);
+  color: #fff;
+  font-size: 22rpx;
+  font-weight: 500;
+}
+/* 菜品信息 */
+.dish-info {
+  padding: 20rpx 24rpx 12rpx;
+}
+.dish-name {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #333;
+  display: block;
+  margin-bottom: 8rpx;
+}
+.dish-desc {
+  font-size: 24rpx;
+  color: #999;
+  display: block;
+  margin-bottom: 12rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.dish-meta {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-bottom: 8rpx;
+}
+.dish-price {
+  font-size: 34rpx;
+  font-weight: 700;
+  color: #ff6b35;
+}
+.dish-stock {
+  font-size: 24rpx;
+  color: #999;
+}
+.dish-cat {
+  font-size: 24rpx;
+  color: #ff8c42;
+  display: block;
+}
+/* 操作按钮 */
+.dish-actions {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 16rpx;
+  padding: 16rpx 24rpx 24rpx;
+  border-top: 1rpx solid #f5f5f5;
+}
+.action-btn {
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  height: 64rpx;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-radius: 32rpx;
+  font-size: 26rpx;
+  font-weight: 500;
+}
+.action-btn text {
+  font-size: 26rpx;
+}
+.toggle-btn {
+  background: #f5f5f5;
+  color: #666;
+}
+.down-btn {
+  background: #fff3e0;
+  color: #ff6b35;
+}
+.up-btn {
+  background: #e8f5e9;
+  color: #4caf50;
+}
+.edit-btn {
+  background: #e3f2fd;
+  color: #1976d2;
+}
+.del-btn {
+  background: #ffebee;
+  color: #e53935;
+}
+/* 空状态 */
+.empty-wrap {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 120rpx 40rpx;
+}
+.empty-icon {
+  font-size: 80rpx;
+  margin-bottom: 24rpx;
+}
+.empty-text {
+  font-size: 32rpx;
+  color: #999;
+  margin-bottom: 12rpx;
+}
+.empty-hint {
+  font-size: 26rpx;
+  color: #ccc;
+}
+.loading-wrap {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 80rpx 0;
+  font-size: 28rpx;
+  color: #999;
+}

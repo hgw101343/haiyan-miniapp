@@ -9,6 +9,9 @@ export default {
     "pages/profile/index",
     "pages/feedback/index",
     "pages/favorites/index",
+    "pages/blindbox/index",
+    "pages/dish-manage/index",
+    "pages/dish-edit/index",
   ],
   window: {
     backgroundTextStyle: "light",

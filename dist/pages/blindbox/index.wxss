@@ -1,0 +1,649 @@
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[0].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[0].use[2]!./node_modules/resolve-url-loader/index.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[0].use[4]!./src/pages/blindbox/index.scss ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************************************/
+@charset "UTF-8";
+/**
+ * 开盲盒页面样式
+ *
+ * 设计原则：
+ * 1. 神秘感 —— 深色渐变背景 + 金色点缀，营造开盲盒的期待感
+ * 2. 动感 —— 轮播时有缩放/脉冲效果，揭晓时放大+光效
+ * 3. 食欲感 —— 菜品揭晓区域使用暖色卡片，突出美食吸引力
+ *
+ * WXSS 兼容：
+ * - 不使用 > * 通配符
+ * - 不使用 :nth-child()
+ * - 不依赖 CSS 变量 var()
+ */
+.blindbox-page {
+  width: 100vw;
+  min-height: 100vh;
+  background: -webkit-gradient(linear, left top, left bottom, from(#1a1a2e), color-stop(50%, #16213e), to(#0f3460));
+  background: -webkit-linear-gradient(top, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  background: linear-gradient(180deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  position: relative;
+  overflow: hidden;
+}
+/* ======== 加载中 ======== */
+.loading-wrap {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  min-height: 60vh;
+  color: #fff;
+  font-size: 28rpx;
+}
+.loading-wrap .loading-icon {
+  font-size: 80rpx;
+  margin-bottom: 24rpx;
+  -webkit-animation: float 2s ease-in-out infinite;
+          animation: float 2s ease-in-out infinite;
+}
+/* ======== 登录引导 ======== */
+.login-guide {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  min-height: 60vh;
+  color: #fff;
+}
+.login-guide .guide-icon {
+  font-size: 100rpx;
+  margin-bottom: 24rpx;
+}
+.login-guide .guide-text {
+  font-size: 34rpx;
+  font-weight: bold;
+  margin-bottom: 12rpx;
+}
+.login-guide .guide-hint {
+  font-size: 26rpx;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 48rpx;
+}
+.login-guide .guide-btn {
+  padding: 20rpx 60rpx;
+  background: -webkit-linear-gradient(315deg, #ff6b35, #e85d04);
+  background: linear-gradient(135deg, #ff6b35, #e85d04);
+  color: #fff;
+  border-radius: 50rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+}
+/* ======== 背景装饰 ======== */
+.bg-decor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+.bg-decor .decor-item {
+  position: absolute;
+  font-size: 40rpx;
+  opacity: 0.08;
+  -webkit-animation: decorFloat 4s ease-in-out infinite;
+          animation: decorFloat 4s ease-in-out infinite;
+}
+/* ======== 主内容 ======== */
+.blindbox-main {
+  position: relative;
+  z-index: 1;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-top: 120rpx;
+}
+/* ======== 盲盒区域（初始/轮播） ======== */
+.box-area {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  padding: 0 40rpx;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+/* 菜品展示卡片 */
+.dish-card {
+  width: 100%;
+  max-width: 500rpx;
+  background: rgba(255, 255, 255, 0.08);
+  border: 2rpx solid rgba(255, 255, 255, 0.12);
+  border-radius: 32rpx;
+  padding: 60rpx 32rpx;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  min-height: 420rpx;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-transition: border-color 0.3s, -webkit-box-shadow 0.3s;
+  transition: border-color 0.3s, -webkit-box-shadow 0.3s;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  transition: border-color 0.3s, box-shadow 0.3s, -webkit-box-shadow 0.3s;
+  /* 轮播中的脉冲效果 */
+}
+.dish-card.spinning {
+  border-color: rgba(255, 215, 0, 0.4);
+  -webkit-box-shadow: 0 0 40rpx rgba(255, 215, 0, 0.15);
+          box-shadow: 0 0 40rpx rgba(255, 215, 0, 0.15);
+  -webkit-animation: spinPulse 0.3s ease-in-out infinite;
+          animation: spinPulse 0.3s ease-in-out infinite;
+}
+.dish-card {
+  /* 初始状态的盲盒展示 */
+}
+.dish-card .box-emoji {
+  font-size: 120rpx;
+  margin-bottom: 20rpx;
+  -webkit-animation: float 2s ease-in-out infinite;
+          animation: float 2s ease-in-out infinite;
+}
+.dish-card .box-label {
+  font-size: 38rpx;
+  font-weight: bold;
+  color: #ffd700;
+  margin-bottom: 12rpx;
+}
+.dish-card .box-hint {
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 0.5);
+}
+.dish-card {
+  /* 轮播中的菜品 */
+}
+.dish-card .spin-dish {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+}
+.dish-card .spin-img {
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 24rpx;
+  margin-bottom: 28rpx;
+  background: rgba(255, 255, 255, 0.05);
+}
+.dish-card .spin-name {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #fff;
+  min-height: 50rpx;
+  line-height: 50rpx;
+}
+.dish-card .stopping-tip {
+  font-size: 24rpx;
+  color: #ffd700;
+  margin-top: 16rpx;
+  -webkit-animation: blink 0.6s ease-in-out infinite;
+          animation: blink 0.6s ease-in-out infinite;
+}
+/* 操作按钮区 */
+.box-actions {
+  margin-top: 48rpx;
+  width: 100%;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+/* ======== 分类选择器 ======== */
+.category-selector {
+  width: 100%;
+  margin-top: 32rpx;
+}
+.category-selector .cat-scroll {
+  width: 100%;
+  white-space: nowrap;
+}
+.category-selector .cat-list {
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  gap: 16rpx;
+  padding: 0 40rpx;
+}
+.category-selector .cat-tag {
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 6rpx;
+  padding: 12rpx 24rpx;
+  border-radius: 40rpx;
+  background: rgba(255, 255, 255, 0.08);
+  border: 2rpx solid rgba(255, 255, 255, 0.12);
+  white-space: nowrap;
+  -webkit-transition: all 0.25s;
+  transition: all 0.25s;
+}
+.category-selector .cat-tag.active {
+  background: rgba(255, 215, 0, 0.18);
+  border-color: #ffd700;
+  -webkit-box-shadow: 0 0 16rpx rgba(255, 215, 0, 0.2);
+          box-shadow: 0 0 16rpx rgba(255, 215, 0, 0.2);
+}
+.category-selector .cat-tag .cat-icon {
+  font-size: 28rpx;
+}
+.category-selector .cat-tag .cat-name {
+  font-size: 26rpx;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 500;
+}
+.category-selector .cat-tag .cat-count {
+  font-size: 22rpx;
+  color: rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.1);
+  padding: 2rpx 10rpx;
+  border-radius: 16rpx;
+  margin-left: 2rpx;
+}
+.start-btn, .stop-btn {
+  padding: 24rpx 80rpx;
+  border-radius: 50rpx;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.start-btn .btn-text, .stop-btn .btn-text {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 4rpx;
+}
+.start-btn {
+  background: -webkit-linear-gradient(315deg, #ffd700, #ff8c00);
+  background: linear-gradient(135deg, #ffd700, #ff8c00);
+  -webkit-box-shadow: 0 8rpx 32rpx rgba(255, 215, 0, 0.4);
+          box-shadow: 0 8rpx 32rpx rgba(255, 215, 0, 0.4);
+  -webkit-animation: btnGlow 2s ease-in-out infinite;
+          animation: btnGlow 2s ease-in-out infinite;
+}
+.start-btn:active {
+  -webkit-transform: scale(0.95);
+      -ms-transform: scale(0.95);
+          transform: scale(0.95);
+}
+.stop-btn {
+  background: -webkit-linear-gradient(315deg, #ff4444, #cc0000);
+  background: linear-gradient(135deg, #ff4444, #cc0000);
+  -webkit-box-shadow: 0 8rpx 32rpx rgba(255, 68, 68, 0.4);
+          box-shadow: 0 8rpx 32rpx rgba(255, 68, 68, 0.4);
+  -webkit-animation: stopPulse 1s ease-in-out infinite;
+          animation: stopPulse 1s ease-in-out infinite;
+}
+.stop-btn:active {
+  -webkit-transform: scale(0.95);
+      -ms-transform: scale(0.95);
+          transform: scale(0.95);
+}
+.stopping-msg {
+  padding: 24rpx 48rpx;
+  font-size: 28rpx;
+  color: rgba(255, 255, 255, 0.6);
+  -webkit-animation: blink 0.8s ease-in-out infinite;
+          animation: blink 0.8s ease-in-out infinite;
+}
+/* ======== 揭晓结果 ======== */
+.result-area {
+  width: 100%;
+  padding: 0 40rpx;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.reveal-card {
+  width: 100%;
+  max-width: 540rpx;
+  background: -webkit-linear-gradient(290deg, #fff9f0, #fff5e6, #ffe8cc);
+  background: linear-gradient(160deg, #fff9f0, #fff5e6, #ffe8cc);
+  border-radius: 32rpx;
+  padding: 40rpx 32rpx;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  -webkit-box-shadow: 0 16rpx 48rpx rgba(0, 0, 0, 0.2);
+          box-shadow: 0 16rpx 48rpx rgba(0, 0, 0, 0.2);
+  -webkit-animation: revealIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+          animation: revealIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.reveal-card .reveal-badge {
+  font-size: 28rpx;
+  color: #ff6b35;
+  font-weight: 600;
+  margin-bottom: 24rpx;
+  letter-spacing: 2rpx;
+}
+.reveal-card .result-img {
+  width: 280rpx;
+  height: 280rpx;
+  border-radius: 24rpx;
+  margin-bottom: 24rpx;
+  -webkit-box-shadow: 0 8rpx 32rpx rgba(255, 107, 53, 0.2);
+          box-shadow: 0 8rpx 32rpx rgba(255, 107, 53, 0.2);
+  background: #f5f5f5;
+  border: 4rpx solid #fff;
+}
+.reveal-card .result-name {
+  font-size: 40rpx;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 12rpx;
+}
+.reveal-card .result-desc {
+  font-size: 26rpx;
+  color: #888;
+  margin-bottom: 20rpx;
+  line-height: 1.5;
+  max-width: 400rpx;
+}
+.reveal-card .result-meta {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 16rpx;
+  margin-bottom: 32rpx;
+}
+.reveal-card .result-meta .result-price {
+  font-size: 44rpx;
+  font-weight: 800;
+  color: #ff4444;
+}
+.reveal-card .result-meta .result-sales {
+  font-size: 24rpx;
+  color: #999;
+  background: #f0f0f0;
+  padding: 4rpx 16rpx;
+  border-radius: 20rpx;
+}
+.reveal-card {
+  /* 操作按钮组 */
+}
+.reveal-card .result-actions {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 20rpx;
+  width: 100%;
+  margin-bottom: 24rpx;
+}
+.reveal-card .result-actions .fav-btn, .reveal-card .result-actions .cart-btn {
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  padding: 20rpx 0;
+  border-radius: 16rpx;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-size: 28rpx;
+  font-weight: 600;
+}
+.reveal-card .result-actions .fav-btn {
+  background: #f5f5f5;
+  color: #666;
+  border: 2rpx solid #e8e8e8;
+}
+.reveal-card .result-actions .fav-btn.favorited {
+  background: #fff0f0;
+  border-color: #ffcccc;
+  color: #ff4444;
+}
+.reveal-card .result-actions .fav-btn.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+.reveal-card .result-actions .cart-btn {
+  background: -webkit-linear-gradient(315deg, #ff6b35, #ff4444);
+  background: linear-gradient(135deg, #ff6b35, #ff4444);
+  color: #fff;
+  -webkit-box-shadow: 0 4rpx 16rpx rgba(255, 68, 68, 0.25);
+          box-shadow: 0 4rpx 16rpx rgba(255, 68, 68, 0.25);
+}
+.reveal-card {
+  /* 再来一次 */
+}
+.reveal-card .again-btn {
+  font-size: 28rpx;
+  color: #ff6b35;
+  padding: 16rpx 48rpx;
+  border-radius: 50rpx;
+  border: 2rpx solid rgba(255, 107, 53, 0.3);
+  margin-top: 8rpx;
+}
+/* ==================== 关键帧动画 ==================== */
+/* 悬浮 */
+@-webkit-keyframes float {
+  0%, 100% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+  50% {
+    -webkit-transform: translateY(-16rpx);
+            transform: translateY(-16rpx);
+  }
+}
+@keyframes float {
+  0%, 100% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+  50% {
+    -webkit-transform: translateY(-16rpx);
+            transform: translateY(-16rpx);
+  }
+}
+/* 背景装饰浮动 */
+@-webkit-keyframes decorFloat {
+  0%, 100% {
+    -webkit-transform: translateY(0) rotate(0deg);
+            transform: translateY(0) rotate(0deg);
+    opacity: 0.06;
+  }
+  50% {
+    -webkit-transform: translateY(-30rpx) rotate(15deg);
+            transform: translateY(-30rpx) rotate(15deg);
+    opacity: 0.12;
+  }
+}
+@keyframes decorFloat {
+  0%, 100% {
+    -webkit-transform: translateY(0) rotate(0deg);
+            transform: translateY(0) rotate(0deg);
+    opacity: 0.06;
+  }
+  50% {
+    -webkit-transform: translateY(-30rpx) rotate(15deg);
+            transform: translateY(-30rpx) rotate(15deg);
+    opacity: 0.12;
+  }
+}
+/* 轮播脉冲 */
+@-webkit-keyframes spinPulse {
+  0%, 100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(1.02);
+            transform: scale(1.02);
+  }
+}
+@keyframes spinPulse {
+  0%, 100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(1.02);
+            transform: scale(1.02);
+  }
+}
+/* 闪烁 */
+@-webkit-keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+/* 按钮发光呼吸 */
+@-webkit-keyframes btnGlow {
+  0%, 100% {
+    -webkit-box-shadow: 0 8rpx 32rpx rgba(255, 215, 0, 0.4);
+            box-shadow: 0 8rpx 32rpx rgba(255, 215, 0, 0.4);
+  }
+  50% {
+    -webkit-box-shadow: 0 12rpx 48rpx rgba(255, 215, 0, 0.6);
+            box-shadow: 0 12rpx 48rpx rgba(255, 215, 0, 0.6);
+    -webkit-transform: translateY(-2rpx);
+            transform: translateY(-2rpx);
+  }
+}
+@keyframes btnGlow {
+  0%, 100% {
+    -webkit-box-shadow: 0 8rpx 32rpx rgba(255, 215, 0, 0.4);
+            box-shadow: 0 8rpx 32rpx rgba(255, 215, 0, 0.4);
+  }
+  50% {
+    -webkit-box-shadow: 0 12rpx 48rpx rgba(255, 215, 0, 0.6);
+            box-shadow: 0 12rpx 48rpx rgba(255, 215, 0, 0.6);
+    -webkit-transform: translateY(-2rpx);
+            transform: translateY(-2rpx);
+  }
+}
+/* 停止按钮脉冲 */
+@-webkit-keyframes stopPulse {
+  0%, 100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(1.04);
+            transform: scale(1.04);
+  }
+}
+@keyframes stopPulse {
+  0%, 100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(1.04);
+            transform: scale(1.04);
+  }
+}
+/* 结果揭晓入场 */
+@-webkit-keyframes revealIn {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(0.6) translateY(40rpx);
+            transform: scale(0.6) translateY(40rpx);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1) translateY(0);
+            transform: scale(1) translateY(0);
+  }
+}
+@keyframes revealIn {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(0.6) translateY(40rpx);
+            transform: scale(0.6) translateY(40rpx);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1) translateY(0);
+            transform: scale(1) translateY(0);
+  }
+}
