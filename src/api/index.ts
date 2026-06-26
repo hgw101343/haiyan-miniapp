@@ -453,10 +453,17 @@ export const feedbackApi = {
 export const favoriteApi = {
   /** 添加收藏 */
   add: (dishId: number) =>
-    request<{ success: boolean }>({ url: "/favorites", method: "POST", data: { dishId } }),
+    request<{ success: boolean }>({
+      url: "/favorites",
+      method: "POST",
+      data: { dishId },
+    }),
   /** 取消收藏 */
   remove: (dishId: number) =>
-    request<{ success: boolean }>({ url: `/favorites/${dishId}`, method: "DELETE" }),
+    request<{ success: boolean }>({
+      url: `/favorites/${dishId}`,
+      method: "DELETE",
+    }),
   /** 获取当前用户的收藏列表（含完整菜品信息） */
   list: () => request<FavoriteItem[]>({ url: "/favorites" }),
 };
@@ -476,22 +483,28 @@ export interface FavoriteItem {
  * 更新菜品（管理员）
  * PUT /api/dishes/:id
  */
-export const updateDish = (id: number, data: Partial<Dish> & { categoryId?: number }) =>
-  request<Dish>({ url: `/dishes/${id}`, method: 'PUT', data });
+export const updateDish = (
+  id: number,
+  data: Partial<Dish> & { categoryId?: number },
+) => request<Dish>({ url: `/dishes/${id}`, method: "PUT", data });
 
 /**
  * 删除菜品（管理员，软删除）
  * DELETE /api/dishes/:id
  */
 export const deleteDish = (id: number) =>
-  request<{ success: boolean }>({ url: `/dishes/${id}`, method: 'DELETE' });
+  request<{ success: boolean }>({ url: `/dishes/${id}`, method: "DELETE" });
 
 /**
  * 切换菜品上下架状态（管理员）
  * PATCH /api/dishes/:id/available
  */
 export const toggleDishAvailable = (id: number, isActive: boolean) =>
-  request<Dish>({ url: `/dishes/${id}/available`, method: 'PATCH', data: { isActive } });
+  request<Dish>({
+    url: `/dishes/${id}/available`,
+    method: "PATCH",
+    data: { isActive },
+  });
 
 /**
  * 新增菜品（管理员）

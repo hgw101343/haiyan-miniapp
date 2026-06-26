@@ -13,17 +13,19 @@
 }
 .order-page .status-tabs .tab {
   display: inline-block;
-  padding: 20rpx 24rpx;
-  font-size: 26rpx;
+  padding: 24rpx 28rpx;
+  font-size: 28rpx;
   color: var(--text-secondary);
+  -webkit-transition: color 0.2s ease;
+  transition: color 0.2s ease;
 }
 .order-page .status-tabs .tab.active {
   color: var(--primary-color);
   border-bottom: 4rpx solid var(--primary-color);
-  font-weight: 500;
+  font-weight: 600;
 }
 .order-page .order-list {
-  padding: 16rpx;
+  padding: 16rpx 24rpx;
 }
 .order-page .loading, .order-page .empty {
   display: -webkit-flex;
@@ -38,19 +40,31 @@
   -webkit-justify-content: center;
       -ms-flex-pack: center;
           justify-content: center;
-  padding: 80rpx 0;
+  padding: 120rpx 0;
   color: var(--text-secondary);
   font-size: 26rpx;
   gap: 16rpx;
 }
 .order-page .loading .empty-icon, .order-page .empty .empty-icon {
   font-size: 80rpx;
+  opacity: 0.4;
 }
 .order-card {
   background: var(--card-color);
   border-radius: 12rpx;
   margin-bottom: 16rpx;
-  padding: 16rpx 20rpx;
+  padding: 20rpx 24rpx;
+  -webkit-box-shadow: var(--shadow-sm);
+          box-shadow: var(--shadow-sm);
+  -webkit-transition: -webkit-transform 0.15s ease;
+  transition: -webkit-transform 0.15s ease;
+  transition: transform 0.15s ease;
+  transition: transform 0.15s ease, -webkit-transform 0.15s ease;
+}
+.order-card:active {
+  -webkit-transform: scale(0.98);
+      -ms-transform: scale(0.98);
+          transform: scale(0.98);
 }
 .order-card .order-header {
   display: -webkit-flex;
@@ -72,7 +86,7 @@
 }
 .order-card .order-header .order-status {
   font-size: 26rpx;
-  font-weight: 500;
+  font-weight: 600;
 }
 .order-card .order-items {
   margin-bottom: 12rpx;
@@ -103,6 +117,6 @@
 }
 .order-card .order-footer .order-total {
   font-size: 30rpx;
-  color: var(--primary-color);
+  color: var(--price-color);
   font-weight: bold;
 }

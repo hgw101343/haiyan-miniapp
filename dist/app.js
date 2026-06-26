@@ -54,8 +54,8 @@ function _fetchAndApplyTheme() {
           _context.p = 1;
           _context.n = 2;
           return _tarojs_taro__WEBPACK_IMPORTED_MODULE_1___default().request({
-            url: 'http://localhost:3000/api/theme',
-            method: 'GET'
+            url: "http://localhost:3000/api/theme",
+            method: "GET"
           });
         case 2:
           res = _context.v;
@@ -72,12 +72,12 @@ function _fetchAndApplyTheme() {
           _t = _context.v;
           // 2. 网络不可达则使用本地缓存
           try {
-            cached = _tarojs_taro__WEBPACK_IMPORTED_MODULE_1___default().getStorageSync('app_theme');
+            cached = _tarojs_taro__WEBPACK_IMPORTED_MODULE_1___default().getStorageSync("app_theme");
             if (cached) theme = cached;
           } catch (_unused2) {}
         case 4:
           // 3. 缓存到本地（各页面 useTheme hook 读取此缓存）
-          _tarojs_taro__WEBPACK_IMPORTED_MODULE_1___default().setStorageSync('app_theme', theme);
+          _tarojs_taro__WEBPACK_IMPORTED_MODULE_1___default().setStorageSync("app_theme", theme);
 
           // 4. 应用导航栏颜色（所有页面通用，包括 splash 等非 TabBar 页）
           (0,_hooks_useTheme__WEBPACK_IMPORTED_MODULE_2__.applyNavBarTheme)(theme);
@@ -106,7 +106,7 @@ function App(_ref) {
      * 确保从其他页面（如管理后台）返回时主题保持最新。
      */
     var off = _tarojs_taro__WEBPACK_IMPORTED_MODULE_1___default().onAppShow(function () {
-      var theme = _tarojs_taro__WEBPACK_IMPORTED_MODULE_1___default().getStorageSync('app_theme');
+      var theme = _tarojs_taro__WEBPACK_IMPORTED_MODULE_1___default().getStorageSync("app_theme");
       if (theme) {
         (0,_hooks_useTheme__WEBPACK_IMPORTED_MODULE_2__.applyNavBarTheme)(theme);
       }
@@ -117,7 +117,7 @@ function App(_ref) {
      * Taro.onAppShow 返回一个取消监听的函数，在 cleanup 中调用
      */
     return function () {
-      if (typeof off === 'function') off();
+      if (typeof off === "function") off();
     };
   }, []);
   return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
@@ -155,7 +155,7 @@ function App(_ref) {
 
 
 
-var config = {"pages":["pages/splash/index","pages/index/index","pages/category/index","pages/cart/index","pages/order/index","pages/order/detail","pages/profile/index","pages/feedback/index","pages/favorites/index","pages/blindbox/index","pages/dish-manage/index","pages/dish-edit/index"],"window":{"backgroundTextStyle":"light","navigationBarBackgroundColor":"#666666","navigationBarTitleText":"海宴私厨","navigationBarTextStyle":"white"},"tabBar":{"color":"#999999","selectedColor":"#666666","backgroundColor":"#ffffff","borderStyle":"white","list":[{"pagePath":"pages/index/index","text":"首页","iconPath":"assets/icons/home.png","selectedIconPath":"assets/icons/home-active.png"},{"pagePath":"pages/category/index","text":"菜单","iconPath":"assets/icons/menu.png","selectedIconPath":"assets/icons/menu-active.png"},{"pagePath":"pages/cart/index","text":"购物车","iconPath":"assets/icons/cart.png","selectedIconPath":"assets/icons/cart-active.png"},{"pagePath":"pages/order/index","text":"订单","iconPath":"assets/icons/order.png","selectedIconPath":"assets/icons/order-active.png"},{"pagePath":"pages/profile/index","text":"我的","iconPath":"assets/icons/profile.png","selectedIconPath":"assets/icons/profile-active.png"}]},"requiredPrivateInfos":["getLocation"],"permission":{"scope.userLocation":{"desc":"用于展示附近门店"}},"sitemapLocation":"sitemap.json"};
+var config = {"pages":["pages/splash/index","pages/index/index","pages/category/index","pages/cart/index","pages/order/index","pages/order/detail","pages/profile/index","pages/feedback/index","pages/favorites/index","pages/blindbox/index","pages/dish-manage/index","pages/dish-edit/index"],"window":{"backgroundTextStyle":"light","navigationBarBackgroundColor":"#ff6b35","navigationBarTitleText":"海宴私厨","navigationBarTextStyle":"white"},"tabBar":{"color":"#999999","selectedColor":"#ff6b35","backgroundColor":"#ffffff","borderStyle":"white","list":[{"pagePath":"pages/index/index","text":"首页","iconPath":"assets/icons/home.png","selectedIconPath":"assets/icons/home-active.png"},{"pagePath":"pages/category/index","text":"菜单","iconPath":"assets/icons/menu.png","selectedIconPath":"assets/icons/menu-active.png"},{"pagePath":"pages/cart/index","text":"购物车","iconPath":"assets/icons/cart.png","selectedIconPath":"assets/icons/cart-active.png"},{"pagePath":"pages/order/index","text":"订单","iconPath":"assets/icons/order.png","selectedIconPath":"assets/icons/order-active.png"},{"pagePath":"pages/profile/index","text":"我的","iconPath":"assets/icons/profile.png","selectedIconPath":"assets/icons/profile-active.png"}]},"requiredPrivateInfos":["getLocation"],"permission":{"scope.userLocation":{"desc":"用于展示附近门店"}},"sitemapLocation":"sitemap.json"};
 _tarojs_runtime__WEBPACK_IMPORTED_MODULE_5__.taroWindowProvider.__taroAppConfig = config
 var inst = App((0,_tarojs_plugin_framework_react_dist_runtime__WEBPACK_IMPORTED_MODULE_6__.createReactApp)(_node_modules_tarojs_taro_loader_lib_entry_cache_js_name_app_app_tsx__WEBPACK_IMPORTED_MODULE_2__["default"], react__WEBPACK_IMPORTED_MODULE_3__, react_dom__WEBPACK_IMPORTED_MODULE_4__["default"], config))
 

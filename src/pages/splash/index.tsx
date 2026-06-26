@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react'
-import Taro from '@tarojs/taro'
-import { View, Text, Image } from '@tarojs/components'
-import './index.scss'
+import React, { useEffect, useState } from "react";
+import Taro from "@tarojs/taro";
+import { View, Text, Image } from "@tarojs/components";
+import "./index.scss";
 
 /**
  * 开屏广告页面（Splash Screen）
@@ -20,12 +20,32 @@ import './index.scss'
  */
 export default function SplashPage() {
   /** 动画是否已就绪（用于触发 CSS transition） */
-  const [ready, setReady] = useState(false)
+  const [ready, setReady] = useState(false);
   /** 飘落的食物 emoji 列表 */
   const [foodItems] = useState(() => {
     // 预设食物 emoji 池，每次随机取 12 个
-    const pool = ['🍜', '🍲', '🍛', '🍱', '🥘', '🍝', '🦐', '🥩', '🥗', '🌶️', '🧄', '🫚', '🍗', '🦀', '🐟', '🥟', '🍤', '🫕', '🥮']
-    const items = []
+    const pool = [
+      "🍜",
+      "🍲",
+      "🍛",
+      "🍱",
+      "🥘",
+      "🍝",
+      "🦐",
+      "🥩",
+      "🥗",
+      "🌶️",
+      "🧄",
+      "🫚",
+      "🍗",
+      "🦀",
+      "🐟",
+      "🥟",
+      "🍤",
+      "🫕",
+      "🥮",
+    ];
+    const items = [];
     for (let i = 0; i < 12; i++) {
       items.push({
         emoji: pool[Math.floor(Math.random() * pool.length)],
@@ -33,29 +53,29 @@ export default function SplashPage() {
         delay: Math.random() * 2,
         duration: 3 + Math.random() * 3,
         size: 16 + Math.random() * 20,
-      })
+      });
     }
-    return items
-  })
+    return items;
+  });
 
   useEffect(() => {
     // 延迟一帧触发动画，确保 DOM 已渲染
-    requestAnimationFrame(() => setReady(true))
+    requestAnimationFrame(() => setReady(true));
 
     // 2.5 秒后自动跳转到 Tab 首页
     const timer = setTimeout(() => {
-      Taro.switchTab({ url: '/pages/index/index' })
-    }, 2500)
+      Taro.switchTab({ url: "/pages/index/index" });
+    }, 2500);
 
-    return () => clearTimeout(timer)
-  }, [])
+    return () => clearTimeout(timer);
+  }, []);
 
   /**
    * 用户点击"立即体验"，提前关闭开屏页并进入首页
    */
   const handleEnter = () => {
-    Taro.switchTab({ url: '/pages/index/index' })
-  }
+    Taro.switchTab({ url: "/pages/index/index" });
+  };
 
   return (
     <View className="splash-page">
@@ -64,7 +84,7 @@ export default function SplashPage() {
       {foodItems.map((item, idx) => (
         <Text
           key={idx}
-          className={`food-float ${ready ? 'active' : ''}`}
+          className={`food-float ${ready ? "active" : ""}`}
           style={{
             left: `${item.left}%`,
             animationDelay: `${item.delay}s`,
@@ -78,7 +98,7 @@ export default function SplashPage() {
       ))}
 
       {/* ========== 主内容区 ========== */}
-      <View className={`splash-content ${ready ? 'ready' : ''}`}>
+      <View className={`splash-content ${ready ? "ready" : ""}`}>
         {/* Logo 容器：带弹跳缩放动画 + 光晕效果 */}
         <View className="logo-container">
           {/* 外圈光晕装饰 */}
@@ -86,13 +106,13 @@ export default function SplashPage() {
           {/* 品牌 Logo 图片 */}
           <Image
             className="logo-img"
-            src={require('../../assets/logo.jpg')}
+            src={require("../../assets/logo.jpg")}
             mode="aspectFit"
           />
         </View>
 
         {/* 品牌名称 */}
-        <Text className="brand-name">海艳私厨</Text>
+        <Text className="brand-name">海宴私厨</Text>
 
         {/* Slogan —— 用食欲感文案吸引人 */}
         <View className="slogan-row">
@@ -131,14 +151,14 @@ export default function SplashPage() {
       </View>
 
       {/* ========== 底部操作区 ========== */}
-      <View className={`splash-footer ${ready ? 'ready' : ''}`}>
+      <View className={`splash-footer ${ready ? "ready" : ""}`}>
         {/* "立即体验" 按钮 */}
         <View className="enter-btn" onClick={handleEnter}>
           <Text className="enter-text">立即体验</Text>
         </View>
         {/* 品牌版权信息 */}
-        <Text className="copyright">© 海艳私厨 Food Order System</Text>
+        <Text className="copyright">© 海宴私厨 Food Order System</Text>
       </View>
     </View>
-  )
+  );
 }

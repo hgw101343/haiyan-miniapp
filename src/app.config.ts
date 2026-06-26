@@ -15,13 +15,13 @@ export default {
   ],
   window: {
     backgroundTextStyle: "light",
-    navigationBarBackgroundColor: "#666666",
+    navigationBarBackgroundColor: "#ff6b35",
     navigationBarTitleText: "海宴私厨",
     navigationBarTextStyle: "white",
   },
   tabBar: {
     color: "#999999",
-    selectedColor: "#666666",
+    selectedColor: "#ff6b35",
     backgroundColor: "#ffffff",
     borderStyle: "white",
     list: [

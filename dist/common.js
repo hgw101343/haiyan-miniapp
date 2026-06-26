@@ -429,7 +429,7 @@ var favoriteApi = {
 var updateDish = function updateDish(id, data) {
   return request({
     url: "/dishes/".concat(id),
-    method: 'PUT',
+    method: "PUT",
     data: data
   });
 };
@@ -441,7 +441,7 @@ var updateDish = function updateDish(id, data) {
 var deleteDish = function deleteDish(id) {
   return request({
     url: "/dishes/".concat(id),
-    method: 'DELETE'
+    method: "DELETE"
   });
 };
 
@@ -452,7 +452,7 @@ var deleteDish = function deleteDish(id) {
 var toggleDishAvailable = function toggleDishAvailable(id, isActive) {
   return request({
     url: "/dishes/".concat(id, "/available"),
-    method: 'PATCH',
+    method: "PATCH",
     data: {
       isActive: isActive
     }
@@ -585,8 +585,8 @@ function DishImage(_ref) {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        backgroundColor: "#f0f0f0",
-        color: "#999",
+        backgroundColor: "var(--bg-color)",
+        color: "var(--text-hint)",
         fontSize: "24rpx",
         overflow: "hidden"
       }, style),
@@ -600,7 +600,11 @@ function DishImage(_ref) {
     src: localSrc,
     mode: mode,
     className: className,
-    style: style,
+    style: (0,C_Users_hgw10_WorkBuddy_2026_06_23_15_03_39_food_order_system_miniapp_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_5__["default"])({
+      opacity: 1,
+      animation: "fadeIn 0.3s ease"
+    }, style),
+    lazyLoad: true,
     onError: function onError() {
       return setFailed(true);
     },

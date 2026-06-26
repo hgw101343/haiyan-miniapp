@@ -49,7 +49,7 @@ function SplashPage() {
   /** 飘落的食物 emoji 列表 */
   var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(function () {
       // 预设食物 emoji 池，每次随机取 12 个
-      var pool = ['🍜', '🍲', '🍛', '🍱', '🥘', '🍝', '🦐', '🥩', '🥗', '🌶️', '🧄', '🫚', '🍗', '🦀', '🐟', '🥟', '🍤', '🫕', '🥮'];
+      var pool = ["🍜", "🍲", "🍛", "🍱", "🥘", "🍝", "🦐", "🥩", "🥗", "🌶️", "🧄", "🫚", "🍗", "🦀", "🐟", "🥟", "🍤", "🫕", "🥮"];
       var items = [];
       for (var i = 0; i < 12; i++) {
         items.push({
@@ -73,7 +73,7 @@ function SplashPage() {
     // 2.5 秒后自动跳转到 Tab 首页
     var timer = setTimeout(function () {
       _tarojs_taro__WEBPACK_IMPORTED_MODULE_1___default().switchTab({
-        url: '/pages/index/index'
+        url: "/pages/index/index"
       });
     }, 2500);
     return function () {
@@ -86,14 +86,14 @@ function SplashPage() {
    */
   var handleEnter = function handleEnter() {
     _tarojs_taro__WEBPACK_IMPORTED_MODULE_1___default().switchTab({
-      url: '/pages/index/index'
+      url: "/pages/index/index"
     });
   };
   return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)(_tarojs_components__WEBPACK_IMPORTED_MODULE_4__.View, {
     className: "splash-page",
     children: [foodItems.map(function (item, idx) {
       return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)(_tarojs_components__WEBPACK_IMPORTED_MODULE_4__.Text, {
-        className: "food-float ".concat(ready ? 'active' : ''),
+        className: "food-float ".concat(ready ? "active" : ""),
         style: {
           left: "".concat(item.left, "%"),
           animationDelay: "".concat(item.delay, "s"),
@@ -104,7 +104,7 @@ function SplashPage() {
         children: item.emoji
       }, idx, false);
     }), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)(_tarojs_components__WEBPACK_IMPORTED_MODULE_4__.View, {
-      className: "splash-content ".concat(ready ? 'ready' : ''),
+      className: "splash-content ".concat(ready ? "ready" : ""),
       children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)(_tarojs_components__WEBPACK_IMPORTED_MODULE_4__.View, {
         className: "logo-container",
         children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)(_tarojs_components__WEBPACK_IMPORTED_MODULE_4__.View, {
@@ -116,7 +116,7 @@ function SplashPage() {
         }, void 0, false)]
       }, void 0, true), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)(_tarojs_components__WEBPACK_IMPORTED_MODULE_4__.Text, {
         className: "brand-name",
-        children: "\u6D77\u8273\u79C1\u53A8"
+        children: "\u6D77\u5BB4\u79C1\u53A8"
       }, void 0, false), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)(_tarojs_components__WEBPACK_IMPORTED_MODULE_4__.View, {
         className: "slogan-row",
         children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)(_tarojs_components__WEBPACK_IMPORTED_MODULE_4__.Text, {
@@ -180,7 +180,7 @@ function SplashPage() {
         }, void 0, true)]
       }, void 0, true)]
     }, void 0, true), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)(_tarojs_components__WEBPACK_IMPORTED_MODULE_4__.View, {
-      className: "splash-footer ".concat(ready ? 'ready' : ''),
+      className: "splash-footer ".concat(ready ? "ready" : ""),
       children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)(_tarojs_components__WEBPACK_IMPORTED_MODULE_4__.View, {
         className: "enter-btn",
         onClick: handleEnter,
@@ -190,7 +190,7 @@ function SplashPage() {
         }, void 0, false)
       }, void 0, false), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)(_tarojs_components__WEBPACK_IMPORTED_MODULE_4__.Text, {
         className: "copyright",
-        children: "\xA9 \u6D77\u8273\u79C1\u53A8 Food Order System"
+        children: "\xA9 \u6D77\u5BB4\u79C1\u53A8 Food Order System"
       }, void 0, false)]
     }, void 0, true)]
   }, void 0, true);

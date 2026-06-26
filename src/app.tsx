@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react'
-import Taro from '@tarojs/taro'
+import React, { useEffect } from "react";
+import Taro from "@tarojs/taro";
 import {
   DEFAULT_THEME,
   type ThemeConfig,
   applyNavBarTheme,
-} from './hooks/useTheme'
-import './app.scss'
+} from "./hooks/useTheme";
+import "./app.scss";
 
 /**
  * 应用启动时的主题加载与应用的完整流程
@@ -21,40 +21,40 @@ import './app.scss'
  */
 async function fetchAndApplyTheme() {
   // 使用默认主题作为初始值
-  let theme: ThemeConfig = DEFAULT_THEME
+  let theme: ThemeConfig = DEFAULT_THEME;
 
   // 1. 从后端拉取主题
   try {
     const res = await Taro.request({
-      url: 'http://localhost:3000/api/theme',
-      method: 'GET',
-    })
+      url: "http://localhost:3000/api/theme",
+      method: "GET",
+    });
     if (res.statusCode === 200) {
-      const data = (res.data as { success: boolean; data: ThemeConfig }).data
+      const data = (res.data as { success: boolean; data: ThemeConfig }).data;
       // 确认返回数据包含有效的 primaryColor（简单校验）
       if (data && data.primaryColor) {
-        theme = data
+        theme = data;
       }
     }
   } catch {
     // 2. 网络不可达则使用本地缓存
     try {
-      const cached = Taro.getStorageSync('app_theme')
-      if (cached) theme = cached as ThemeConfig
+      const cached = Taro.getStorageSync("app_theme");
+      if (cached) theme = cached as ThemeConfig;
     } catch {}
   }
 
   // 3. 缓存到本地（各页面 useTheme hook 读取此缓存）
-  Taro.setStorageSync('app_theme', theme)
+  Taro.setStorageSync("app_theme", theme);
 
   // 4. 应用导航栏颜色（所有页面通用，包括 splash 等非 TabBar 页）
-  applyNavBarTheme(theme)
+  applyNavBarTheme(theme);
 }
 
 function App({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     // 组件挂载时立即加载并应用主题
-    fetchAndApplyTheme()
+    fetchAndApplyTheme();
 
     /**
      * 注册 App 从后台切回前台的事件监听
@@ -68,22 +68,22 @@ function App({ children }: { children: React.ReactNode }) {
      * 确保从其他页面（如管理后台）返回时主题保持最新。
      */
     const off = Taro.onAppShow(() => {
-      const theme = Taro.getStorageSync('app_theme')
+      const theme = Taro.getStorageSync("app_theme");
       if (theme) {
-        applyNavBarTheme(theme)
+        applyNavBarTheme(theme);
       }
-    })
+    });
 
     /**
      * 组件卸载时移除事件监听，防止内存泄漏
      * Taro.onAppShow 返回一个取消监听的函数，在 cleanup 中调用
      */
     return () => {
-      if (typeof off === 'function') off()
-    }
-  }, [])
+      if (typeof off === "function") off();
+    };
+  }, []);
 
-  return <>{children}</>
+  return <>{children}</>;
 }
 
-export default App
+export default App;

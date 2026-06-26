@@ -96,8 +96,8 @@ export default function DishImage({
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          backgroundColor: "#f0f0f0",
-          color: "#999",
+          backgroundColor: "var(--bg-color)",
+          color: "var(--text-hint)",
           fontSize: "24rpx",
           overflow: "hidden",
           ...style,
@@ -114,7 +114,12 @@ export default function DishImage({
       src={localSrc}
       mode={mode}
       className={className}
-      style={style}
+      style={{
+        opacity: 1,
+        animation: "fadeIn 0.3s ease",
+        ...style,
+      }}
+      lazyLoad
       onError={() => setFailed(true)}
       onClick={handlePreview}
     />
